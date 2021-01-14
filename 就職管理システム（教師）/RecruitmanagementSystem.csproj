@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="StudentDataWindow.xaml.cs">
+      <DependentUpon>StudentDataWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StudentsDate.xaml.cs">
       <DependentUpon>StudentsDate.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="StudentDataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StudentsDate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

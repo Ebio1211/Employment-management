@@ -20,7 +20,6 @@ namespace 就職管理システム_教師_
     /// </summary>
     public partial class MainWindow : Window
     {
-        StudentsDate students = new StudentsDate();
         public MainWindow()
         {
             InitializeComponent();
@@ -39,7 +38,7 @@ namespace 就職管理システム_教師_
 
         private void btBrowsing_Click(object sender, RoutedEventArgs e)
         {
-            
+            StudentsDate students = new StudentsDate();
             students.ShowDialog();
         }
 
