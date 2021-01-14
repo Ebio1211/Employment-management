@@ -28,5 +28,11 @@ namespace 就職管理システム_教師_
         {
             this.Close();
         }
+
+        private void btWatch_Click(object sender, RoutedEventArgs e)
+        {
+            StudentDataWindow studentData = new StudentDataWindow();
+            studentData.ShowDialog();
+        }
     }
 }

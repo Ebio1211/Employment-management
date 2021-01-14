@@ -23,5 +23,10 @@ namespace 就職管理システム_教師_
         {
             InitializeComponent();
         }
+
+        private void btReturn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -7,6 +7,95 @@
         mc:Ignorable="d"
         Title="StudentDataWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="学生情報" FontSize="20" HorizontalAlignment="Right"
+                   VerticalAlignment="Center" Margin="30,0"/>
         
+        <TextBox Grid.ColumnSpan="2" Grid.Column="1" Margin="5" IsReadOnly="True"/>
+
+        <TextBlock Text="並べ替え" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                   FontSize="15" Margin="10"/>
+        <ComboBox x:Name="cbSort" Grid.Row="1" HorizontalAlignment="Right"
+                  VerticalAlignment="Center" Margin="25,10" Width="120" FontSize="15">
+        </ComboBox>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Center">
+            <RadioButton x:Name="rbAsc" Content="昇順" Grid.Row="1"
+                     VerticalAlignment="Bottom" Margin="10"/>
+
+            <RadioButton x:Name="rbDesc" Content="降順" Grid.Row="1"
+                     VerticalAlignment="Bottom" Margin="10"/>
+        </StackPanel>
+
+        <GroupBox Header="絞り込み" Grid.Row="1" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="7*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="企業名" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                   FontSize="12" Margin="10"/>
+                <ComboBox x:Name="cbCorporation" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"
+                  VerticalAlignment="Center" Margin="25,7" Width="100" FontSize="12">
+                    <ComboBoxItem Name="cbiNotCorporation" Content="絞り込まない"/>
+                </ComboBox>
+
+                <TextBlock Text="都道府県" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                   FontSize="12" Margin="10"/>
+                <ComboBox x:Name="cbPrefectures" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"
+                  VerticalAlignment="Center" Margin="25,7" Width="100" FontSize="12">
+                    <ComboBoxItem Name="cbiNotPrefectures" Content="絞り込まない"/>
+                </ComboBox>
+                
+                <TextBlock Text="都道府県" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"
+                   FontSize="12" Margin="10"/>
+                <ComboBox x:Name="cbType" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"
+                  VerticalAlignment="Center" Margin="25,7" Width="100" FontSize="12">
+                    <ComboBoxItem Name="cbiNotType" Content="絞り込まない"/>
+                </ComboBox>
+            </Grid>
+        </GroupBox>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="検索" FontSize="20" Margin="30" />
+            <TextBox x:Name="tbSearch" Width="130" Margin="0,25"/>
+        </StackPanel>
+
+        <Button x:Name="btSearch" Content="検索" Grid.Column="3" Grid.Row="1"
+                HorizontalAlignment="Center" Width="50" Margin="0,50"/>
+
+        <DataGrid x:Name="dgStudentData" Grid.Row="2" Grid.ColumnSpan="4" Grid.Column="0"
+                  Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True">
+
+        </DataGrid>
+
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="2" Orientation="Horizontal"
+                    HorizontalAlignment="Center" >
+
+            <Button x:Name="btReturn" Content="戻る"
+                    VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btReturn_Click"/>
+
+            <Button x:Name="btWatch" Content="閲覧,評価"
+                    VerticalAlignment="Center" Margin="15" Height="50" Width="100"/>
+        </StackPanel>
+
     </Grid>
 </Window>
