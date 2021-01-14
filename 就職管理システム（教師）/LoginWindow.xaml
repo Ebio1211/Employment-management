@@ -1,0 +1,39 @@
+﻿<Window x:Class="就職管理システム_教師_.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:就職管理システム_教師_"
+        mc:Ignorable="d"
+        Title="就職管理システム（教師用）" Height="328" Width="529" ResizeMode="NoResize" >
+    <Window.Background>
+        <ImageBrush ImageSource="CorkBoard02.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="114*"/>
+            <ColumnDefinition Width="114*"/>
+            <ColumnDefinition Width="114*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="就活情報管理システム" Grid.Row="0" Grid.Column="0" Foreground="Black"
+                   HorizontalAlignment="Center" Margin="15,10" VerticalAlignment="Center"
+                   FontSize="35" FontWeight="Bold" Grid.ColumnSpan="3"/>
+        <TextBlock Text="メールアドレス" Grid.Row="1" VerticalAlignment="Top"
+                   HorizontalAlignment="Left" Margin="13,35" FontSize="25"/>
+        <TextBox x:Name="MALogin" Grid.Column="1" Grid.Row="1" Margin="4,35"
+                 VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock x:Name="tbAddress" Text="@ojs.ac.jp" Grid.Row="1" Grid.Column="2"
+                   VerticalAlignment="Top" HorizontalAlignment="Left"
+                   Margin="4,35" FontSize="25"/>
+
+        <Button x:Name="btLogin" Content="Login" Grid.Row="1" Grid.Column="1"
+                VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="98"
+                Margin="0,30" Height="25" FontSize="15" FontWeight="Bold" Click="btLogin_Click"/>
+    </Grid>
+ 
+
+</Window>

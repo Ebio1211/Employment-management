@@ -1,0 +1,82 @@
+﻿<Window x:Class="就職管理システム_教師_.StudentsDate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:就職管理システム_教師_"
+        mc:Ignorable="d"
+        Title="StudentsDate" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="並べ替え" HorizontalAlignment="Left" VerticalAlignment="Center"
+                   FontSize="15" Margin="10"/>
+        <ComboBox x:Name="cbSort" HorizontalAlignment="Right" Margin="25,50" Width="120">
+            <ComboBoxItem Name="cbiClassAsc" Content="クラス(昇順)"/>
+            <ComboBoxItem Name="cbiClassDesc" Content="クラス(降順)"/>
+            <ComboBoxItem Name="cbiCourseAsc" Content="コース(昇順)"/>
+            <ComboBoxItem Name="cbiCourseDesc" Content="コース(降順)"/>
+        </ComboBox>
+
+        <GroupBox Grid.Column="1" Header="絞り込み" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="コース" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="15" Margin="10"/>
+
+                <ComboBox x:Name="cbCourse" Grid.Column="1" 
+                          HorizontalAlignment="Center" Width="108" Margin="0,10">
+                    <ComboBoxItem Name="cbiNotCourse" Content="絞り込まない"/>
+                </ComboBox>
+
+                <TextBlock Text="クラス" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="15" Margin="10"/>
+                <ComboBox x:Name="cbClass" Grid.Row="1" Grid.Column="1" 
+                          HorizontalAlignment="Center" Width="108" Margin="0,10">
+                    <ComboBoxItem Name="cbiNotClass" Content="絞り込まない"/>
+                </ComboBox>
+            </Grid>
+        </GroupBox>
+
+        <TextBlock Text="検索" HorizontalAlignment="Left" VerticalAlignment="Center"
+                   Grid.Column="2" Margin="15" FontSize="20"/>
+        <TextBox x:Name="tbSearch" Grid.Column="2"
+                 HorizontalAlignment="Right" VerticalAlignment="Center"
+                 Width="150" Height="25" Margin="15"/>
+
+        <Button x:Name="btSearch" Content="検索" Grid.Column="3"
+                HorizontalAlignment="Center" Width="50" Margin="0,50"/>
+
+        <DataGrid x:Name="dgStudentsData" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"
+                  Margin="10,5"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+
+            <Button x:Name="btReturn" Content="戻る"
+                    VerticalAlignment="Center" Margin="15" Height="50" Width="50" Click="btReturn_Click"/>
+
+            <Button x:Name="btWatch" Content="閲覧"
+                    VerticalAlignment="Center" Margin="15" Height="50" Width="50"/>
+        </StackPanel>
+    </Grid>
+</Window>
