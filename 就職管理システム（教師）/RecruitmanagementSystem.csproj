@@ -58,6 +58,11 @@
     <Compile Include="DataRegistration.xaml.cs">
       <DependentUpon>DataRegistration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RecruitManagementDataBaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecruitManagementDataBaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ReportWindow.xaml.cs">
       <DependentUpon>ReportWindow.xaml</DependentUpon>
     </Compile>
@@ -131,6 +136,17 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="RecruitManagementDataBaseDataSet.xsc">
+      <DependentUpon>RecruitManagementDataBaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="RecruitManagementDataBaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RecruitManagementDataBaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RecruitManagementDataBaseDataSet.xss">
+      <DependentUpon>RecruitManagementDataBaseDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
