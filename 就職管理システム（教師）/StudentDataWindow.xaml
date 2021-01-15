@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:就職管理システム_教師_"
         mc:Ignorable="d"
-        Title="StudentDataWindow" Height="450" Width="800">
+        Title="就職管理システム（教師用）" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -94,7 +94,7 @@
                     VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btReturn_Click"/>
 
             <Button x:Name="btWatch" Content="閲覧,評価"
-                    VerticalAlignment="Center" Margin="15" Height="50" Width="100"/>
+                    VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btWatch_Click"/>
         </StackPanel>
 
     </Grid>

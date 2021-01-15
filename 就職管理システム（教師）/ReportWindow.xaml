@@ -1,0 +1,62 @@
+﻿<Window x:Class="就職管理システム_教師_.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:就職管理システム_教師_"
+        mc:Ignorable="d"
+        Title="就職管理システム（教師用）" Height="650" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="tbCompany" Grid.Column="0" IsReadOnly="True" Margin="3"
+                         Text="企業名" FontSize="20"/>
+
+                <TextBox x:Name="tbPress" Grid.Column="1" IsReadOnly="True" Margin="3"
+                         Text="活動場所" FontSize="20"/>
+
+                <TextBox x:Name="tbType" Grid.Column="2" IsReadOnly="True" Margin="3"
+                         Text="種別" FontSize="20"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="当日の内容" Grid.Row="1" FontSize="20">
+            <Grid>
+                <TextBox x:Name="tbdayReport" IsReadOnly="True"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="その他" Grid.Row="2" FontSize="20">
+            <Grid>
+                <TextBox x:Name="tbAnother" IsReadOnly="True"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="教師メモ" Grid.Row="3" FontSize="20">
+            <Grid>
+                <TextBox x:Name="tbTeacher" IsReadOnly="True"/>
+            </Grid>
+        </GroupBox>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" >
+            <Button x:Name="btReturn" Content="戻る" Width="120" FontSize="20" Margin="10"
+                    Click="btReturn_Click"/>
+            <Button x:Name="btResubmit" Content="再提出" Width="120" FontSize="20" Margin="10"/>
+            <Button x:Name="btCheck" Content="確認済み" Width="120" FontSize="20" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</Window>

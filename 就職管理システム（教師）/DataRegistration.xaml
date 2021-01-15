@@ -1,4 +1,4 @@
-﻿<Window x:Class="就職管理システム_教師_.StudentsDate"
+﻿<Window x:Class="就職管理システム_教師_.DataRegistration"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -68,7 +68,7 @@
 
         <DataGrid x:Name="dgStudentsData" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"
                   Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True">
-            
+
         </DataGrid>
 
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal"
@@ -77,8 +77,8 @@
             <Button x:Name="btReturn" Content="戻る"
                     VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btReturn_Click"/>
 
-            <Button x:Name="btWatch" Content="閲覧"
-                    VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btWatch_Click"/>
+            <Button x:Name="btWatch" Content="開く"
+                    VerticalAlignment="Center" Margin="15" Height="50" Width="100"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:就職管理システム_教師_"
         mc:Ignorable="d"
-        Title="" Height="484" Width="450">
+        Title="" Height="484" Width="450" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -56,7 +56,8 @@
                    VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"/>
 
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="btEdit" Content="編集" Margin="5" Height="30" Width="80"/>
+            <Button x:Name="btEdit" Content="編集" Margin="5" Height="30" Width="80"
+                    Click="btEdit_Click"/>
             <Button x:Name="btUpdate" Content="更新" Margin="5" Height="30" Width="80"/>
         </StackPanel>
 

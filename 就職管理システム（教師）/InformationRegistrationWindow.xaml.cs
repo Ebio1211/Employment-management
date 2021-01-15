@@ -46,5 +46,11 @@ namespace 就職管理システム_教師_
                 this.Close();
             }
         }
+
+        private void btEdit_Click(object sender, RoutedEventArgs e)
+        {
+            DataRegistration registration = new DataRegistration();
+            registration.ShowDialog();
+        }
     }
 }

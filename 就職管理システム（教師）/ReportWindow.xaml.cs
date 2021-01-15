@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace 就職管理システム_教師_
 {
     /// <summary>
-    /// StudentDataWindow.xaml の相互作用ロジック
+    /// ReportWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class StudentDataWindow : Window
+    public partial class ReportWindow : Window
     {
-        public StudentDataWindow()
+        public ReportWindow()
         {
             InitializeComponent();
         }
@@ -27,12 +27,6 @@ namespace 就職管理システム_教師_
         private void btReturn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void btWatch_Click(object sender, RoutedEventArgs e)
-        {
-            ReportWindow report = new ReportWindow();
-            report.ShowDialog();
         }
     }
 }
