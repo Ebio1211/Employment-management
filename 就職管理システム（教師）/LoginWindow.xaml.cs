@@ -30,5 +30,9 @@ namespace 就職管理システム_教師_
             MainWindow mainWindow = new MainWindow();
             mainWindow.ShowDialog();
         }
+
+        public void Checkdata()
+        {
+        }
     }
 }

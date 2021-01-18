@@ -20,6 +20,7 @@ namespace 就職管理システム_教師_
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();

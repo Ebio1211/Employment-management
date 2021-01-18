@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:就職管理システム_教師_"
         mc:Ignorable="d"
-        Title="就職管理システム（教師用）" Height="550" Width="900" ResizeMode="NoResize">
+        Title="就職管理システム（教師用）" Height="550" Width="900" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:RecruitManagementDataBaseDataSet x:Key="recruitManagement"/>
+        <CollectionViewSource x:Key="生徒ViewSource" Source
+                              ="{Binding StudentTable, Source={StaticResource recruitManagement}}"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
@@ -15,20 +20,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
+
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="並べ替え" HorizontalAlignment="Left" VerticalAlignment="Center"
-                   FontSize="15" Margin="10"/>
-        <ComboBox x:Name="cbSort" HorizontalAlignment="Right" Margin="25,50" Width="120" FontSize="15">
-            <ComboBoxItem Name="cbiClassAsc" Content="クラス(昇順)"/>
-            <ComboBoxItem Name="cbiClassDesc" Content="クラス(降順)"/>
-            <ComboBoxItem Name="cbiCourseAsc" Content="コース(昇順)"/>
-            <ComboBoxItem Name="cbiCourseDesc" Content="コース(降順)"/>
-        </ComboBox>
-
-        <GroupBox Grid.Column="1" Header="絞り込み" Margin="5">
+        <GroupBox Grid.Column="0"  Header="絞り込み" Margin="5">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="5*"/>
@@ -58,20 +54,35 @@
         </GroupBox>
 
         <TextBlock Text="検索" HorizontalAlignment="Left" VerticalAlignment="Center"
-                   Grid.Column="2" Margin="15" FontSize="20"/>
-        <TextBox x:Name="tbSearch" Grid.Column="2"
+                   Grid.Column="1" Margin="15" FontSize="20"/>
+        <TextBox x:Name="tbSearch" Grid.Column="1"
                  HorizontalAlignment="Right" VerticalAlignment="Center"
-                 Width="150" Height="25" Margin="15"/>
+                 Width="307" Height="24" Margin="0,66,15,66"/>
 
-        <Button x:Name="btSearch" Content="検索" Grid.Column="3"
-                HorizontalAlignment="Center" Width="50" Margin="0,50"/>
+        <Button x:Name="btSearch" Content="検索" Grid.Column="2"
+                HorizontalAlignment="Center" Width="81" Margin="20,50,27,50"/>
 
+        
         <DataGrid x:Name="dgStudentsData" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"
-                  Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True">
-            
+                  Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True"
+                   ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected"
+                  DataContext="{StaticResource 生徒ViewSource}">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="学籍番号Column"
+                                     Binding="{Binding StudentNumber}" Header="学籍番号" Width="SizeToHeader" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="氏名Column" 
+                                    IsReadOnly="True" Binding="{Binding StudentName}" Header="氏名" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="コースColumn" 
+                                    IsReadOnly="True" Binding="{Binding Course}" Header="コース" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="クラスColumn" 
+                                    IsReadOnly="True" Binding="{Binding Class}" Header="クラス" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="メールアドレスColumn" 
+                                    IsReadOnly="True" Binding="{Binding MailAddress}" Header="メールアドレス" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+
         </DataGrid>
 
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal"
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"
                     HorizontalAlignment="Center" >
 
             <Button x:Name="btReturn" Content="戻る"
@@ -79,6 +90,7 @@
 
             <Button x:Name="btWatch" Content="閲覧"
                     VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btWatch_Click"/>
+
         </StackPanel>
     </Grid>
 </Window>

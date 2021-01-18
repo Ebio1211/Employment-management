@@ -34,5 +34,10 @@ namespace 就職管理システム_教師_
             ReportWindow report = new ReportWindow();
             report.ShowDialog();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

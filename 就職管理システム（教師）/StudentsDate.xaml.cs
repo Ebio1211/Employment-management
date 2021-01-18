@@ -19,6 +19,7 @@ namespace 就職管理システム_教師_
     /// </summary>
     public partial class StudentsDate : Window
     {
+        就職管理システム_教師_.RecruitManagementDataBaseDataSet recruitManagement;
         public StudentsDate()
         {
             InitializeComponent();
@@ -33,6 +34,23 @@ namespace 就職管理システム_教師_
         {
             StudentDataWindow studentData = new StudentDataWindow();
             studentData.ShowDialog();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            recruitManagement = ((就職管理システム_教師_.RecruitManagementDataBaseDataSet)
+                (this.FindResource("recruitManagement")));
+
+            就職管理システム_教師_.RecruitManagementDataBaseDataSetTableAdapters.
+                StudentTableTableAdapter studentTableTable =
+                new RecruitManagementDataBaseDataSetTableAdapters.StudentTableTableAdapter();
+
+            studentTableTable.Fill(recruitManagement.StudentTable);
+
+            System.Windows.Data.CollectionViewSource 生徒ViewSource
+                = ((System.Windows.Data.CollectionViewSource)(this.FindResource("生徒ViewSource")));
+
+
         }
     }
 }
