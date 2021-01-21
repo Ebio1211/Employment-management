@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:就職管理システム_教師_"
         mc:Ignorable="d"
-        Title="就職管理システム（教師用）" Height="328" Width="529" ResizeMode="NoResize">
+        Title="就職管理システム（教師用）" Height="328" Width="529" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Window.Background>
         <ImageBrush ImageSource="CorkBoard02.jpg"/>
     </Window.Background>
+    <Window.Resources>
+        <local:RecruitManagementDataBaseDataSet x:Key="recruitManagement"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
@@ -24,13 +27,13 @@
                    FontSize="35" FontWeight="Bold" Grid.ColumnSpan="3"/>
         <TextBlock Text="メールアドレス" Grid.Row="1" VerticalAlignment="Top"
                    HorizontalAlignment="Left" Margin="13,35" FontSize="25"/>
-        <TextBox x:Name="MALogin" Grid.Column="1" Grid.Row="1" Margin="4,35"
-                 VerticalAlignment="Top" FontSize="20"/>
-        <TextBlock x:Name="tbAddress" Text="@ojs.ac.jp" Grid.Row="1" Grid.Column="2"
+        <TextBox x:Name="MALogin" Grid.Column="1" Grid.Row="1" Margin="4,35" 
+                 VerticalAlignment="Top" FontSize="20" TextChanged="MALogin_TextChanged"/>
+        <TextBlock x:Name="tblAddress" Text="@ojs.ac.jp" Grid.Row="1" Grid.Column="2"
                    VerticalAlignment="Top" HorizontalAlignment="Left"
                    Margin="4,35" FontSize="25"/>
 
-        <Button x:Name="btLogin" Content="Login" Grid.Row="1" Grid.Column="1"
+        <Button x:Name="btLogin" Content="Login" Grid.Row="1" Grid.Column="1" IsEnabled="False"
                 VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="98"
                 Margin="0,30" Height="25" FontSize="15" FontWeight="Bold" Click="btLogin_Click"/>
     </Grid>
