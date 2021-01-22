@@ -19,6 +19,21 @@ namespace 就職管理システム_教師_
     /// </summary>
     public partial class ReportWindow : Window
     {
+
+        就職管理システム_教師_.RecruitManagementDataBaseDataSet recruitManagement;
+
+        //企業情報の登録
+        就職管理システム_教師_.RecruitManagementDataBaseDataSetTableAdapters.
+            RecruitTableTableAdapter recruitTable =
+            new RecruitManagementDataBaseDataSetTableAdapters.RecruitTableTableAdapter();
+
+        //企業名
+        public string companyget { get; set; }
+        //活動場所
+        public string pressget { get; set; }
+        //種別
+        public string typege { get; set; }
+
         public ReportWindow()
         {
             InitializeComponent();
@@ -27,6 +42,18 @@ namespace 就職管理システム_教師_
         private void btReturn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            recruitManagement = ((就職管理システム_教師_.RecruitManagementDataBaseDataSet)
+                (this.FindResource("recruitManagement")));
+
+            recruitTable.Fill(recruitManagement.RecruitTable);
+
+
+            //当日の内容にデータベースの内容を表示
+            tbdayReport.Text =
         }
     }
 }

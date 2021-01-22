@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:就職管理システム_教師_"
         mc:Ignorable="d"
-        Title="就職管理システム（教師用）" Height="650" Width="800" ResizeMode="NoResize">
+        Title="就職管理システム（教師用）" Height="650" Width="800" 
+        ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:RecruitManagementDataBaseDataSet x:Key="recruitManagement"/>
+        
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>

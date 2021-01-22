@@ -41,10 +41,18 @@ namespace 就職管理システム_教師_
             string join = MALogin.Text + tblAddress.Text;
             var data = recruitManagement.TeachersTable.Where(d => d.TeacherMail.Contains(join)).ToList();
 
-            if (data.Exists(s=>s.TeacherMail.Contains(join)))
+            if (data.Exists(s=>s.TeacherMail.StartsWith(join)))
             {
-                MALogin.Text = "";
                 MainWindow mainWindow = new MainWindow();
+
+                //教師名の抽出
+                var tename = recruitManagement.TeachersTable.Where(
+                    d => d.TeacherMail.Contains(join)).ToList();
+
+                //教師名の受け渡し
+                mainWindow.tbTeacher.Text = tename[0].TeacherName.ToString();
+
+
                 mainWindow.ShowDialog();
             }else
             {

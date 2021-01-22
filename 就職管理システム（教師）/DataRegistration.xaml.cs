@@ -28,5 +28,10 @@ namespace 就職管理システム_教師_
         {
             this.Close();
         }
+
+        private void btcbi_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

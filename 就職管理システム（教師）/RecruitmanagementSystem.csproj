@@ -58,6 +58,9 @@
     <Compile Include="DataRegistration.xaml.cs">
       <DependentUpon>DataRegistration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RecruitManagementDataBaseDataSet.cs">
+      <DependentUpon>RecruitManagementDataBaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="RecruitManagementDataBaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
