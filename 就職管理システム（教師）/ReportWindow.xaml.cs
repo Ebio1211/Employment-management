@@ -33,6 +33,10 @@ namespace 就職管理システム_教師_
         public string pressget { get; set; }
         //種別
         public string typege { get; set; }
+        //活動日
+        public string date { get; set; }
+        //学籍番号
+        public string number { get; set; }
 
         public ReportWindow()
         {
@@ -53,7 +57,27 @@ namespace 就職管理システム_教師_
 
 
             //当日の内容にデータベースの内容を表示
-            tbdayReport.Text =
+
+            var daycontent = recruitManagement.RecruitTable.Where(
+                d => d.StudenNumber.ToString().Contains(number
+                    ) && d.RecruitDate.ToString().Contains(date)
+                ).Select(b=>b.dateContent.ToString()).ToArray();
+
+            tbdayReport.Text = daycontent[0];
+
+            //その他にデータベースの内容を表示
+
+            var another = recruitManagement.RecruitTable.Where(
+                d => d.StudenNumber.ToString().Contains(number
+                    ) && d.RecruitDate.ToString().Contains(date)
+                ).Select(b => b.Others.ToString()).ToArray();
+
+            if (!string.IsNullOrWhiteSpace(another[0]))
+            {
+                tbAnother.Text = another[0];
+            }
+
+
         }
     }
 }

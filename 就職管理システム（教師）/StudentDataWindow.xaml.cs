@@ -56,6 +56,10 @@ namespace 就職管理システム_教師_
 
             report.tbType.Text = data.Row[3].ToString();
 
+            //データの格納
+            report.number = data.Row[5].ToString();
+            report.date = data.Row[4].ToString();
+
             report.ShowDialog();
         }
 
