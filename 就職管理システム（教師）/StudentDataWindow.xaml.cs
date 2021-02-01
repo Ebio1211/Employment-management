@@ -27,10 +27,29 @@ namespace 就職管理システム_教師_
             RecruitTableTableAdapter recruitTable =
             new RecruitManagementDataBaseDataSetTableAdapters.RecruitTableTableAdapter();
 
+        System.Windows.Data.CollectionViewSource 企業ViewSource;
+
+        
+
+
         //学籍番号
         public string stunumber { get; set; }
         //氏名
         public string stname { get; set; }
+
+        //ID
+        public string recId { get; set; }
+        //企業名
+        public string companyget { get; set; }
+        //活動場所
+        public string pressget { get; set; }
+        //種別
+        public string typege { get; set; }
+        //活動日
+        public string date { get; set; }
+        //評価
+        public string evalu { get; set; }
+
 
         public StudentDataWindow()
         {
@@ -50,6 +69,7 @@ namespace 就職管理システム_教師_
             DataRowView data = (DataRowView)dgStudentData.SelectedItems[0];
 
             //企業名、活動場所、種別受け渡し
+            
             report.tbCompany.Text = data.Row[1].ToString();
 
             report.tbPress.Text = data.Row[2].ToString();
@@ -57,11 +77,15 @@ namespace 就職管理システム_教師_
             report.tbType.Text = data.Row[3].ToString();
 
             //データの格納
+            report.recId = data.Row[0].ToString();
             report.number = data.Row[5].ToString();
             report.date = data.Row[4].ToString();
+            report.evalu = data.Row[10].ToString();
 
             report.ShowDialog();
         }
+
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -92,7 +116,9 @@ namespace 就職管理システム_教師_
             System.Windows.Data.CollectionViewSource 企業ViewSource
                 = ((System.Windows.Data.CollectionViewSource)(this.FindResource("企業ViewSource")));
 
-            
+            企業ViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("企業ViewSource")));
+            企業ViewSource.View.MoveCurrentToFirst();
+
 
             //生徒情報を取得
             就職管理システム_教師_.RecruitManagementDataBaseDataSetTableAdapters.
@@ -110,10 +136,39 @@ namespace 就職管理システム_教師_
                         )
                     );
                 dgStudentData.DataContext = data;
+
+                
             }
 
 
         }
+
+        public void RecruiteEv()
+        {
+            //選択行の取り出し
+            //DataRowView drv = (DataRowView)carReportViewSource.View.CurrentItem;
+            //drv.Row[3] = MakerTextBox.Text;
+
+            
+
+            var selectdata = recruitManagement.RecruitTable.Where(
+                    d => d.RecruitID.ToString().Contains(
+                        this.recId
+                        )
+                    );
+
+
+            DataRowView Drv = (DataRowView)企業ViewSource.View.CurrentItem;
+
+            string textev = selectdata.Select(d => d.Evaluation).ToString();
+
+            textev = "再提出";
+
+            //データベース更新
+            recruitTable.Adapter.Update(recruitManagement.RecruitTable);
+
+        }
+
 
         private void dgStudentData_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {

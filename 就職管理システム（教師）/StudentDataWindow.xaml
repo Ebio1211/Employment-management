@@ -11,8 +11,8 @@
         <CollectionViewSource x:Key="企業ViewSource" Source
                               ="{Binding RecruitTable, Source={StaticResource recruitManagement}}"/>
     </Window.Resources>
-    
-    <Grid>
+
+    <Grid DataContext="{StaticResource 企業ViewSource}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
@@ -84,7 +84,10 @@
                   ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected"
                   DataContext="{StaticResource 企業ViewSource}" CanUserAddRows="False"
                   SelectedCellsChanged="dgStudentData_SelectedCellsChanged">
+
             <DataGrid.Columns>
+                <DataGridTextColumn x:Name="企業NoColumn"
+                                     Binding="{Binding RecruitID}" Header="就活ID" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="企業名Column"
                                      Binding="{Binding EmployeeName}" Header="企業名" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="活動場所Column" 
@@ -92,11 +95,14 @@
                 <DataGridTextColumn x:Name="種別Column" 
                                     IsReadOnly="True" Binding="{Binding Type}" Header="種別"/>
                 <DataGridTextColumn x:Name="活動日Column" 
-                                    IsReadOnly="True" Binding="{Binding RecruitDate}" Header="活動日"/>
+                                    IsReadOnly="True" Binding="{Binding RecruitDate,StringFormat=d}" Header="活動日"/>
+                <DataGridTextColumn x:Name="時間Column" 
+                                    IsReadOnly="True" Binding="{Binding AMPM}" Header="活動時間" />
                 <DataGridTextColumn x:Name="評価Column" 
                                     IsReadOnly="True" Binding="{Binding Evaluation}" Header="評価" />
                 <DataGridTextColumn x:Name="期限Column" 
-                                    IsReadOnly="True" Binding="{Binding DateLimit}" Header="提出期限" />
+                                    IsReadOnly="True" Binding="{Binding DateLimit,StringFormat=d}" Header="提出期限" />
+
             </DataGrid.Columns>
         </DataGrid>
 

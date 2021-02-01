@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using 就職管理システム_教師_.RecruitManagementDataBaseDataSetTableAdapters;
 
 namespace 就職管理システム_教師_
 {
@@ -27,6 +29,13 @@ namespace 就職管理システム_教師_
             RecruitTableTableAdapter recruitTable =
             new RecruitManagementDataBaseDataSetTableAdapters.RecruitTableTableAdapter();
 
+        //評価の登録
+        就職管理システム_教師_.RecruitManagementDataBaseDataSetTableAdapters.
+            EvaluationTableTableAdapter evaluation =
+            new RecruitManagementDataBaseDataSetTableAdapters.EvaluationTableTableAdapter();
+
+        //ID
+        public string recId { get; set; }
         //企業名
         public string companyget { get; set; }
         //活動場所
@@ -37,6 +46,10 @@ namespace 就職管理システム_教師_
         public string date { get; set; }
         //学籍番号
         public string number { get; set; }
+        //評価
+        public string evalu { get; set; }
+
+        
 
         public ReportWindow()
         {
@@ -76,6 +89,34 @@ namespace 就職管理システム_教師_
             {
                 tbAnother.Text = another[0];
             }
+
+
+        }
+
+        private void btResubmit_Click(object sender, RoutedEventArgs e)
+        {
+
+            //選択行の取り出し
+            //DataRowView drv = (DataRowView)carReportViewSource.View.CurrentItem;
+            //drv.Row[3] = MakerTextBox.Text;
+
+            StudentDataWindow dataWindow = new StudentDataWindow();
+
+            //企業名、活動場所、種別の取得
+            //DataRowView data = (DataRowView)dgStudentData.SelectedItems[0];
+
+            //企業名、活動場所、種別受け渡し
+            dataWindow.recId = this.recId;
+            dataWindow.date = this.date;
+
+            //Drv = "再提出";
+
+            //データベース更新
+            //recruitTable.Adapter.Update(recruitManagement.StudentTable);
+
+            //dataWindow.RecruiteEv();
+
+
 
 
         }

@@ -1012,6 +1012,8 @@ namespace 就職管理システム_教師_ {
             
             private global::System.Data.DataColumn columnDateLimit;
             
+            private global::System.Data.DataColumn columnAMPM;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public RecruitTableDataTable() {
@@ -1143,6 +1145,14 @@ namespace 就職管理システム_教師_ {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn AMPMColumn {
+                get {
+                    return this.columnAMPM;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1178,10 +1188,10 @@ namespace 就職管理システム_教師_ {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public RecruitTableRow AddRecruitTableRow(int RecruitID, string EmployeeName, string Place, string Type, System.DateTime RecruitDate, int StudenNumber, string dateContent, string TestContent, string Others, string TeachersMemo, string Evaluation, System.DateTime DateLimit) {
+            public RecruitTableRow AddRecruitTableRow(string EmployeeName, string Place, string Type, System.DateTime RecruitDate, int StudenNumber, string dateContent, string TestContent, string Others, string TeachersMemo, string Evaluation, System.DateTime DateLimit, string AMPM) {
                 RecruitTableRow rowRecruitTableRow = ((RecruitTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        RecruitID,
+                        null,
                         EmployeeName,
                         Place,
                         Type,
@@ -1192,7 +1202,8 @@ namespace 就職管理システム_教師_ {
                         Others,
                         TeachersMemo,
                         Evaluation,
-                        DateLimit};
+                        DateLimit,
+                        AMPM};
                 rowRecruitTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRecruitTableRow);
                 return rowRecruitTableRow;
@@ -1234,6 +1245,7 @@ namespace 就職管理システム_教師_ {
                 this.columnTeachersMemo = base.Columns["TeachersMemo"];
                 this.columnEvaluation = base.Columns["Evaluation"];
                 this.columnDateLimit = base.Columns["DateLimit"];
+                this.columnAMPM = base.Columns["AMPM"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1263,8 +1275,13 @@ namespace 就職管理システム_教師_ {
                 base.Columns.Add(this.columnEvaluation);
                 this.columnDateLimit = new global::System.Data.DataColumn("DateLimit", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDateLimit);
+                this.columnAMPM = new global::System.Data.DataColumn("AMPM", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMPM);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnRecruitID}, true));
+                this.columnRecruitID.AutoIncrement = true;
+                this.columnRecruitID.AutoIncrementSeed = -1;
+                this.columnRecruitID.AutoIncrementStep = -1;
                 this.columnRecruitID.AllowDBNull = false;
                 this.columnRecruitID.Unique = true;
                 this.columnEmployeeName.AllowDBNull = false;
@@ -1282,6 +1299,7 @@ namespace 就職管理システム_教師_ {
                 this.columnEvaluation.AllowDBNull = false;
                 this.columnEvaluation.MaxLength = 10;
                 this.columnDateLimit.AllowDBNull = false;
+                this.columnAMPM.MaxLength = 4;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2495,6 +2513,22 @@ namespace 就職管理システム_教師_ {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string AMPM {
+                get {
+                    try {
+                        return ((string)(this[this.tableRecruitTable.AMPMColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("テーブル \'RecruitTable\' にある列 \'AMPM\' の値は DBNull です。", e);
+                    }
+                }
+                set {
+                    this[this.tableRecruitTable.AMPMColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsdateContentNull() {
                 return this.IsNull(this.tableRecruitTable.dateContentColumn);
             }
@@ -2539,6 +2573,18 @@ namespace 就職管理システム_教師_ {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetTeachersMemoNull() {
                 this[this.tableRecruitTable.TeachersMemoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsAMPMNull() {
+                return this.IsNull(this.tableRecruitTable.AMPMColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetAMPMNull() {
+                this[this.tableRecruitTable.AMPMColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3667,10 +3713,11 @@ namespace 就職管理システム_教師_.RecruitManagementDataBaseDataSetTable
             tableMapping.ColumnMappings.Add("TeachersMemo", "TeachersMemo");
             tableMapping.ColumnMappings.Add("Evaluation", "Evaluation");
             tableMapping.ColumnMappings.Add("DateLimit", "DateLimit");
+            tableMapping.ColumnMappings.Add("AMPM", "AMPM");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[RecruitTable] WHERE (([RecruitID] = @Original_RecruitID) AND ([EmployeeName] = @Original_EmployeeName) AND ([Place] = @Original_Place) AND ([Type] = @Original_Type) AND ([RecruitDate] = @Original_RecruitDate) AND ([StudenNumber] = @Original_StudenNumber) AND ([Evaluation] = @Original_Evaluation) AND ([DateLimit] = @Original_DateLimit))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [RecruitTable] WHERE (([RecruitID] = @Original_RecruitID) AND ([EmployeeName] = @Original_EmployeeName) AND ([Place] = @Original_Place) AND ([Type] = @Original_Type) AND ([RecruitDate] = @Original_RecruitDate) AND ([StudenNumber] = @Original_StudenNumber) AND ([Evaluation] = @Original_Evaluation) AND ([DateLimit] = @Original_DateLimit) AND ((@IsNull_AMPM = 1 AND [AMPM] IS NULL) OR ([AMPM] = @Original_AMPM)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RecruitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RecruitID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeeName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -3680,12 +3727,13 @@ namespace 就職管理システム_教師_.RecruitManagementDataBaseDataSetTable
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_StudenNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StudenNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Evaluation", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Evaluation", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateLimit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateLimit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AMPM", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AMPM", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AMPM", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AMPM", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[RecruitTable] ([RecruitID], [EmployeeName], [Place], [Type], [RecruitDate], [StudenNumber], [dateContent], [TestContent], [Others], [TeachersMemo], [Evaluation], [DateLimit]) VALUES (@RecruitID, @EmployeeName, @Place, @Type, @RecruitDate, @StudenNumber, @dateContent, @TestContent, @Others, @TeachersMemo, @Evaluation, @DateLimit);
-SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateContent, TestContent, Others, TeachersMemo, Evaluation, DateLimit FROM RecruitTable WHERE (RecruitID = @RecruitID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [RecruitTable] ([EmployeeName], [Place], [Type], [RecruitDate], [StudenNumber], [dateContent], [TestContent], [Others], [TeachersMemo], [Evaluation], [DateLimit], [AMPM]) VALUES (@EmployeeName, @Place, @Type, @RecruitDate, @StudenNumber, @dateContent, @TestContent, @Others, @TeachersMemo, @Evaluation, @DateLimit, @AMPM);
+SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateContent, TestContent, Others, TeachersMemo, Evaluation, DateLimit, AMPM FROM RecruitTable WHERE (RecruitID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RecruitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RecruitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Place", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Place", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Type", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3697,12 +3745,12 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TeachersMemo", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TeachersMemo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Evaluation", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Evaluation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateLimit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateLimit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AMPM", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AMPM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[RecruitTable] SET [RecruitID] = @RecruitID, [EmployeeName] = @EmployeeName, [Place] = @Place, [Type] = @Type, [RecruitDate] = @RecruitDate, [StudenNumber] = @StudenNumber, [dateContent] = @dateContent, [TestContent] = @TestContent, [Others] = @Others, [TeachersMemo] = @TeachersMemo, [Evaluation] = @Evaluation, [DateLimit] = @DateLimit WHERE (([RecruitID] = @Original_RecruitID) AND ([EmployeeName] = @Original_EmployeeName) AND ([Place] = @Original_Place) AND ([Type] = @Original_Type) AND ([RecruitDate] = @Original_RecruitDate) AND ([StudenNumber] = @Original_StudenNumber) AND ([Evaluation] = @Original_Evaluation) AND ([DateLimit] = @Original_DateLimit));
-SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateContent, TestContent, Others, TeachersMemo, Evaluation, DateLimit FROM RecruitTable WHERE (RecruitID = @RecruitID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [RecruitTable] SET [EmployeeName] = @EmployeeName, [Place] = @Place, [Type] = @Type, [RecruitDate] = @RecruitDate, [StudenNumber] = @StudenNumber, [dateContent] = @dateContent, [TestContent] = @TestContent, [Others] = @Others, [TeachersMemo] = @TeachersMemo, [Evaluation] = @Evaluation, [DateLimit] = @DateLimit, [AMPM] = @AMPM WHERE (([RecruitID] = @Original_RecruitID) AND ([EmployeeName] = @Original_EmployeeName) AND ([Place] = @Original_Place) AND ([Type] = @Original_Type) AND ([RecruitDate] = @Original_RecruitDate) AND ([StudenNumber] = @Original_StudenNumber) AND ([Evaluation] = @Original_Evaluation) AND ([DateLimit] = @Original_DateLimit) AND ((@IsNull_AMPM = 1 AND [AMPM] IS NULL) OR ([AMPM] = @Original_AMPM)));
+SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateContent, TestContent, Others, TeachersMemo, Evaluation, DateLimit, AMPM FROM RecruitTable WHERE (RecruitID = @RecruitID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RecruitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RecruitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Place", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Place", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Type", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3714,6 +3762,7 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TeachersMemo", global::System.Data.SqlDbType.NText, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TeachersMemo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Evaluation", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Evaluation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateLimit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateLimit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AMPM", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AMPM", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RecruitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RecruitID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeeName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Place", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Place", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -3722,6 +3771,9 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_StudenNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StudenNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Evaluation", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Evaluation", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateLimit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateLimit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AMPM", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AMPM", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AMPM", global::System.Data.SqlDbType.NChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AMPM", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RecruitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "RecruitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3737,9 +3789,9 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateConte" +
-                "nt, TestContent, Others, TeachersMemo, Evaluation, DateLimit FROM dbo.RecruitTab" +
-                "le";
+            this._commandCollection[0].CommandText = "SELECT                      RecruitID, EmployeeName, Place, Type, RecruitDate, St" +
+                "udenNumber, dateContent, TestContent, Others, TeachersMemo, Evaluation, DateLimi" +
+                "t, AMPM\r\nFROM                         RecruitTable";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3800,7 +3852,7 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_RecruitID, string Original_EmployeeName, string Original_Place, string Original_Type, System.DateTime Original_RecruitDate, int Original_StudenNumber, string Original_Evaluation, System.DateTime Original_DateLimit) {
+        public virtual int Delete(int Original_RecruitID, string Original_EmployeeName, string Original_Place, string Original_Type, System.DateTime Original_RecruitDate, int Original_StudenNumber, string Original_Evaluation, System.DateTime Original_DateLimit, string Original_AMPM) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_RecruitID));
             if ((Original_EmployeeName == null)) {
                 throw new global::System.ArgumentNullException("Original_EmployeeName");
@@ -3829,6 +3881,14 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
                 this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_Evaluation));
             }
             this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_DateLimit));
+            if ((Original_AMPM == null)) {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_AMPM));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3849,59 +3909,64 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int RecruitID, string EmployeeName, string Place, string Type, System.DateTime RecruitDate, int StudenNumber, string dateContent, string TestContent, string Others, string TeachersMemo, string Evaluation, System.DateTime DateLimit) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(RecruitID));
+        public virtual int Insert(string EmployeeName, string Place, string Type, System.DateTime RecruitDate, int StudenNumber, string dateContent, string TestContent, string Others, string TeachersMemo, string Evaluation, System.DateTime DateLimit, string AMPM) {
             if ((EmployeeName == null)) {
                 throw new global::System.ArgumentNullException("EmployeeName");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(EmployeeName));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(EmployeeName));
             }
             if ((Place == null)) {
                 throw new global::System.ArgumentNullException("Place");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Place));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Place));
             }
             if ((Type == null)) {
                 throw new global::System.ArgumentNullException("Type");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Type));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Type));
             }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(RecruitDate));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(StudenNumber));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(RecruitDate));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(StudenNumber));
             if ((dateContent == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(dateContent));
+            }
+            if ((TestContent == null)) {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(dateContent));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(TestContent));
             }
-            if ((TestContent == null)) {
+            if ((Others == null)) {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(TestContent));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Others));
             }
-            if ((Others == null)) {
+            if ((TeachersMemo == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Others));
-            }
-            if ((TeachersMemo == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(TeachersMemo));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(TeachersMemo));
             }
             if ((Evaluation == null)) {
                 throw new global::System.ArgumentNullException("Evaluation");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(Evaluation));
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(Evaluation));
             }
-            this.Adapter.InsertCommand.Parameters[11].Value = ((System.DateTime)(DateLimit));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((System.DateTime)(DateLimit));
+            if ((AMPM == null)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(AMPM));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3923,7 +3988,6 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
-                    int RecruitID, 
                     string EmployeeName, 
                     string Place, 
                     string Type, 
@@ -3935,6 +3999,7 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
                     string TeachersMemo, 
                     string Evaluation, 
                     System.DateTime DateLimit, 
+                    string AMPM, 
                     int Original_RecruitID, 
                     string Original_EmployeeName, 
                     string Original_Place, 
@@ -3942,59 +4007,66 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
                     System.DateTime Original_RecruitDate, 
                     int Original_StudenNumber, 
                     string Original_Evaluation, 
-                    System.DateTime Original_DateLimit) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(RecruitID));
+                    System.DateTime Original_DateLimit, 
+                    string Original_AMPM, 
+                    int RecruitID) {
             if ((EmployeeName == null)) {
                 throw new global::System.ArgumentNullException("EmployeeName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(EmployeeName));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(EmployeeName));
             }
             if ((Place == null)) {
                 throw new global::System.ArgumentNullException("Place");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Place));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Place));
             }
             if ((Type == null)) {
                 throw new global::System.ArgumentNullException("Type");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Type));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Type));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(RecruitDate));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(StudenNumber));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(RecruitDate));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(StudenNumber));
             if ((dateContent == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(dateContent));
+            }
+            if ((TestContent == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(dateContent));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(TestContent));
             }
-            if ((TestContent == null)) {
+            if ((Others == null)) {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(TestContent));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Others));
             }
-            if ((Others == null)) {
+            if ((TeachersMemo == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Others));
-            }
-            if ((TeachersMemo == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(TeachersMemo));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(TeachersMemo));
             }
             if ((Evaluation == null)) {
                 throw new global::System.ArgumentNullException("Evaluation");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Evaluation));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Evaluation));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(DateLimit));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(DateLimit));
+            if ((AMPM == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(AMPM));
+            }
             this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_RecruitID));
             if ((Original_EmployeeName == null)) {
                 throw new global::System.ArgumentNullException("Original_EmployeeName");
@@ -4023,6 +4095,15 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
                 this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_Evaluation));
             }
             this.Adapter.UpdateCommand.Parameters[19].Value = ((System.DateTime)(Original_DateLimit));
+            if ((Original_AMPM == null)) {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_AMPM));
+            }
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(RecruitID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4055,6 +4136,7 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
                     string TeachersMemo, 
                     string Evaluation, 
                     System.DateTime DateLimit, 
+                    string AMPM, 
                     int Original_RecruitID, 
                     string Original_EmployeeName, 
                     string Original_Place, 
@@ -4062,8 +4144,9 @@ SELECT RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateCont
                     System.DateTime Original_RecruitDate, 
                     int Original_StudenNumber, 
                     string Original_Evaluation, 
-                    System.DateTime Original_DateLimit) {
-            return this.Update(Original_RecruitID, EmployeeName, Place, Type, RecruitDate, StudenNumber, dateContent, TestContent, Others, TeachersMemo, Evaluation, DateLimit, Original_RecruitID, Original_EmployeeName, Original_Place, Original_Type, Original_RecruitDate, Original_StudenNumber, Original_Evaluation, Original_DateLimit);
+                    System.DateTime Original_DateLimit, 
+                    string Original_AMPM) {
+            return this.Update(EmployeeName, Place, Type, RecruitDate, StudenNumber, dateContent, TestContent, Others, TeachersMemo, Evaluation, DateLimit, AMPM, Original_RecruitID, Original_EmployeeName, Original_Place, Original_Type, Original_RecruitDate, Original_StudenNumber, Original_Evaluation, Original_DateLimit, Original_AMPM, Original_RecruitID);
         }
     }
     
