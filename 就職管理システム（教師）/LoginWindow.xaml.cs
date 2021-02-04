@@ -23,6 +23,9 @@ namespace 就職管理システム_教師_
         就職管理システム_教師_.RecruitManagementDataBaseDataSet recruitManagement;
         BindingList<RecruitManagementDataBaseDataSet> recruits =
             new BindingList<RecruitManagementDataBaseDataSet>();
+
+        public string telog { get; set; }
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -39,7 +42,8 @@ namespace 就職管理システム_教師_
             teachers.Fill(recruitManagement.TeachersTable);
 
             string join = MALogin.Text + tblAddress.Text;
-            var data = recruitManagement.TeachersTable.Where(d => d.TeacherMail.Contains(join)).ToList();
+            var data = recruitManagement.TeachersTable.Where(
+                d => d.TeacherMail.Contains(join)).ToList();
 
             if (data.Exists(s=>s.TeacherMail.StartsWith(join)))
             {
@@ -50,10 +54,12 @@ namespace 就職管理システム_教師_
                     d => d.TeacherMail.Contains(join)).ToList();
 
                 //教師名の受け渡し
-                mainWindow.tbTeacher.Text = tename[0].TeacherName.ToString();
+                mainWindow.teachername = tename[0].TeacherName.ToString();
 
+                MALogin.Text = "";
 
-                mainWindow.ShowDialog();
+                mainWindow.Show();
+                this.Close();
             }else
             {
                 MessageBoxResult result = MessageBox.Show("メールアドレスが間違っています"

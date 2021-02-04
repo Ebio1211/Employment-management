@@ -29,21 +29,32 @@ namespace 就職管理システム_教師_
 
         private void btLogout_Click(object sender, RoutedEventArgs e)
         {
+            LoginWindow login = new LoginWindow();
+
+            login.Show();
             this.Close();
         }
 
         private void btRegistration_Click(object sender, RoutedEventArgs e)
         {
             InformationRegistrationWindow information = new InformationRegistrationWindow();
-            information.ShowDialog();
+
+            information.teachername = this.teachername;
+
+            information.Show();
+            this.Close();
         }
 
         private void btBrowsing_Click(object sender, RoutedEventArgs e)
         {
             StudentsDate students = new StudentsDate();
-            students.ShowDialog();
+            students.Show();
+            this.Close();
         }
 
-
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            tbTeacher.Text = teachername;
+        }
     }
 }

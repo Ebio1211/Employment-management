@@ -20,6 +20,8 @@ namespace 就職管理システム_教師_
     /// </summary>
     public partial class InformationRegistrationWindow : Window
     {
+        public string teachername { get; set; }
+
         就職管理システム_教師_.RecruitManagementDataBaseDataSet recruitManagement;
 
         //生徒情報を取得
@@ -31,6 +33,17 @@ namespace 就職管理システム_教師_
         就職管理システム_教師_.RecruitManagementDataBaseDataSetTableAdapters.
             CourseTableTableAdapter courseTable =
             new RecruitManagementDataBaseDataSetTableAdapters.CourseTableTableAdapter();
+
+        //学籍番号
+        public string stunumber { get; set; }
+        //氏名
+        public string stname { get; set; }
+        //コース
+        public string course { get; set; }
+        //クラス
+        public string clas { get; set; }
+        //メールアドレス
+        public string maill { get; set; }
 
         public InformationRegistrationWindow()
         {
@@ -51,19 +64,35 @@ namespace 就職管理システム_教師_
                 MessageBoxResult result = MessageBox.Show("本当に閉じますか？", "警告", MessageBoxButton.OKCancel);
                 if (result == MessageBoxResult.OK)
                 {
+                    open();
                     this.Close();
                 }
             }
             else
             {
+                open();
                 this.Close();
             }
         }
 
+        public void open()
+        {
+            MainWindow main = new MainWindow();
+
+            main.teachername = this.teachername;
+
+            main.Show();
+        }
+
+
         private void btEdit_Click(object sender, RoutedEventArgs e)
         {
             DataRegistration registration = new DataRegistration();
-            registration.ShowDialog();
+
+            registration.teachername = this.teachername;
+
+            registration.Show();
+            this.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -79,6 +108,42 @@ namespace 就職管理システム_教師_
             {
                 cbCourse.Items.Add(cmitem.ToString());
             }
+
+            if (!string.IsNullOrWhiteSpace(stunumber)||
+                !string.IsNullOrWhiteSpace(stname)||
+                !string.IsNullOrWhiteSpace(course)||
+                !string.IsNullOrWhiteSpace(clas)||
+                !string.IsNullOrWhiteSpace(maill))
+            {
+                btTouroku.IsEnabled = false;
+                btUpdate.IsEnabled = true;
+
+                tbgakuseki.Text = this.stunumber;
+                tbName.Text = this.stname;
+
+                //コースを格納する
+                for (int i = 0; i < cbCourse.Items.Count; i++)
+                {
+                    if (cbCourse.Items[i].ToString() == this.course )
+                    {
+                        cbCourse.SelectedItem = cbCourse.Items[i];
+                        break;
+                    }
+                }
+
+                tbClass.Text = this.clas;
+
+                //メールアドレスを表示
+
+                var maillad = maill;
+
+                string[] mei = maillad.Split('@');
+
+                tbMaill.Text = mei[0];
+
+
+            }
+
         }
 
         private void btTouroku_Click(object sender, RoutedEventArgs e)
@@ -108,6 +173,16 @@ namespace 就職管理システム_教師_
 
                 //データベース更新
                 studentTableTable.Adapter.Update(recruitManagement.StudentTable);
+
+                MessageBoxResult result = MessageBox.Show("データを登録しました。"
+                   , "警告", MessageBoxButton.OK);
+                if (result == MessageBoxResult.OK)
+                {
+                    tbgakuseki.Text = "";
+                    tbName.Text = "";
+                    tbClass.Text = "";
+                    tbMaill.Text = "";
+                }
             }
         }
     }

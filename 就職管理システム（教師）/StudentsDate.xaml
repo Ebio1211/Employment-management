@@ -11,7 +11,8 @@
         <local:RecruitManagementDataBaseDataSet x:Key="viewSource"/>
 
         <CollectionViewSource x:Key="生徒ViewSource" Source
-                              ="{Binding StudentTable, Source={StaticResource recruitManagement}}"/>
+                              ="{Binding StudentTable, Source={
+            StaticResource recruitManagement}}"/>
 
     </Window.Resources>
     <Grid>

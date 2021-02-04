@@ -127,17 +127,17 @@ namespace 就職管理システム_教師_
 
             studentTableTable.Fill(recruitManagement.StudentTable);
 
-            if (string.IsNullOrWhiteSpace(tbstunum.Text))
+            if (!string.IsNullOrWhiteSpace(tbstunum.Text))
             {
                 //学籍番号で絞り込む
-                var data = recruitManagement.RecruitTable.Where(
+                var datanum  = recruitManagement.RecruitTable.Where(
                     d => d.StudenNumber.ToString().Contains(
                         tbstunum.Text.ToString()
                         )
                     );
-                dgStudentData.DataContext = data;
-
                 
+                dgStudentData.DataContext = datanum;
+
             }
 
 
@@ -172,12 +172,24 @@ namespace 就職管理システム_教師_
 
         private void dgStudentData_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            DataRowView data = (DataRowView)dgStudentData.SelectedItems[0];
-
-            if (data.Row[10].ToString() != "未提出")
+            if (dgStudentData.SelectedIndex > 0)
             {
-                btWatch.IsEnabled = true;
-            }        }
+                var data = recruitManagement.RecruitTable.Where(
+                d => d.RecruitID.ToString().Contains(
+                    dgStudentData.SelectedItems[0].ToString()
+                    )
+                ).Distinct().ToArray();
+
+                string evdata = data.Select(n => n.Evaluation).ToString();
+
+                if (evdata != "未提出")
+                {
+                    btWatch.IsEnabled = true;
+                }
+
+            }
+            
+        }
 
         private void btcbiitem_Click(object sender, RoutedEventArgs e)
         {

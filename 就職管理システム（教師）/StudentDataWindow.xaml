@@ -83,6 +83,7 @@
                   Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True"
                   ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected"
                   DataContext="{StaticResource 企業ViewSource}" CanUserAddRows="False"
+                  SelectedIndex="-1"
                   SelectedCellsChanged="dgStudentData_SelectedCellsChanged">
 
             <DataGrid.Columns>

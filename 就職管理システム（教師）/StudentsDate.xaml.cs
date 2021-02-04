@@ -21,6 +21,7 @@ namespace 就職管理システム_教師_
     /// </summary>
     public partial class StudentsDate : Window
     {
+        System.Windows.Data.CollectionViewSource 生徒ViewSource;
         就職管理システム_教師_.RecruitManagementDataBaseDataSet recruitManagement;
 
         //生徒情報を取得
@@ -40,6 +41,10 @@ namespace 就職管理システム_教師_
 
         private void btReturn_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow main = new MainWindow();
+
+            main.Show();
+
             this.Close();
         }
 
@@ -63,8 +68,7 @@ namespace 就職管理システム_教師_
 
             studentTableTable.Fill(recruitManagement.StudentTable);
 
-            System.Windows.Data.CollectionViewSource 生徒ViewSource
-                = ((System.Windows.Data.CollectionViewSource)(this.FindResource("生徒ViewSource")));
+            生徒ViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("生徒ViewSource")));
 
         }
 
@@ -74,7 +78,7 @@ namespace 就職管理システム_教師_
             {
 
                 //絞り込み処理
-                var data = recruitManagement.StudentTable.Where(
+                var data = recruitManagement.StudentTable.AsEnumerable().Where(
                     d => d.Course.Contains(cbCourse.SelectedItem.ToString())
                     );
 
@@ -111,11 +115,11 @@ namespace 就職管理システム_教師_
             StudentDataWindow studentData = new StudentDataWindow();
 
             //学籍番号、氏名の受け渡し
-            DataRowView data = (DataRowView)dgStudentsData.SelectedItems[0];
 
+            var data = (DataRowView)dgStudentsData.SelectedItems[0];
+            
             //学籍番号、氏名受け渡し
             studentData.tbstunum.Text = data.Row[0].ToString();
-
             studentData.tbstuna.Text = data.Row[1].ToString();
 
             //ウィンドウの表示

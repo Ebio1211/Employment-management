@@ -5,7 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:就職管理システム_教師_"
         mc:Ignorable="d"
-        Title="就職管理システム（教師用）" Height="550" Width="900" ResizeMode="NoResize">
+        Title="就職管理システム（教師用）" Height="550" Width="900"
+        ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:RecruitManagementDataBaseDataSet x:Key="recruitManagement"/>
+        <local:RecruitManagementDataBaseDataSet x:Key="viewSource"/>
+
+        <CollectionViewSource x:Key="UpdateViewSource" Source
+                              ="{Binding StudentTable, Source={
+            StaticResource recruitManagement}}"/>
+
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
@@ -53,7 +63,21 @@
                 HorizontalAlignment="Center" Width="81" Margin="23,50,24,50"/>
 
         <DataGrid x:Name="dgStudentsData" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"
-                  Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True">
+                  Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True"
+                   ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected"
+                  DataContext="{StaticResource UpdateViewSource}" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="学籍番号Column"
+                                     Binding="{Binding StudentNumber}" Header="学籍番号" Width="SizeToHeader" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="氏名Column" 
+                                    IsReadOnly="True" Binding="{Binding StudentName}" Header="氏名"/>
+                <DataGridTextColumn x:Name="コースColumn" 
+                                    IsReadOnly="True" Binding="{Binding Course}" Header="コース"/>
+                <DataGridTextColumn x:Name="クラスColumn" 
+                                    IsReadOnly="True" Binding="{Binding Class}" Header="クラス"/>
+                <DataGridTextColumn x:Name="メールアドレスColumn" 
+                                    IsReadOnly="True" Binding="{Binding MailAddress}" Header="メールアドレス" />
+            </DataGrid.Columns>
 
         </DataGrid>
 
@@ -64,7 +88,7 @@
                     VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btReturn_Click"/>
 
             <Button x:Name="btWatch" Content="開く"
-                    VerticalAlignment="Center" Margin="15" Height="50" Width="100"/>
+                    VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btWatch_Click"/>
         </StackPanel>
     </Grid>
 </Window>
