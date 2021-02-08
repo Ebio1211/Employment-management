@@ -51,7 +51,9 @@
                    VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"/>
 
         <ComboBox x:Name="cbCourse" Grid.Column="1" Grid.Row="3" FontSize="15" HorizontalAlignment="Left"
-                   VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"/>
+                   VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90">
+            <ComboBoxItem Name="cbiNotCorporation" Content="絞り込まない"/>
+        </ComboBox>
 
         <TextBox x:Name="tbClass" Grid.Column="1" Grid.Row="4" FontSize="15" HorizontalAlignment="Left"
                    VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"/>
@@ -59,13 +61,18 @@
         <TextBox x:Name="tbMaill" Grid.Column="1" Grid.Row="5" FontSize="15" HorizontalAlignment="Left"
                    VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"/>
 
-        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left">
             <Button x:Name="btEdit" Content="編集" Margin="5" Height="30" Width="80"
                     Click="btEdit_Click"/>
-            <Button x:Name="btUpdate" Content="更新" Margin="5" Height="30" Width="80" IsEnabled="False"/>
+            <Button x:Name="btUpdate" Content="更新" Margin="5" Height="30" Width="80"
+                    IsEnabled="False" Click="btUpdate_Click"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            
+            <Button x:Name="btReset" Content="リセット" Margin="5" Height="30" Width="80"
+                    Click="btReset_Click"/>
+
             <Button x:Name="btCancel" Content="キャンセル" Margin="5" Height="30" Width="80" Click="btCancel_Click"/>
             <Button x:Name="btTouroku" Content="登録" Margin="5" Height="30" Width="80"
                     Click="btTouroku_Click"/>

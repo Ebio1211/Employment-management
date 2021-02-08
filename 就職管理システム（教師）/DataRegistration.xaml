@@ -65,6 +65,7 @@
         <DataGrid x:Name="dgStudentsData" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"
                   Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True"
                    ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected"
+                  SelectionMode="Single" SelectedIndex="-1"
                   DataContext="{StaticResource UpdateViewSource}" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="学籍番号Column"
@@ -84,6 +85,9 @@
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal"
                     HorizontalAlignment="Center" >
 
+            <Button x:Name="btDelete" Content="削除"
+                    VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btDelete_Click"/>
+            
             <Button x:Name="btReturn" Content="戻る"
                     VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btReturn_Click"/>
 

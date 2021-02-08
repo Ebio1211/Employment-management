@@ -40,6 +40,8 @@ namespace 就職管理システム_教師_
 
         private void btReturn_Click(object sender, RoutedEventArgs e)
         {
+            InformationRegistrationWindow information = new InformationRegistrationWindow();
+            information.Show();
             this.Close();
         }
 
@@ -89,6 +91,34 @@ namespace 就職管理システム_教師_
             information.Show();
 
             this.Close();
+        }
+
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MessageBoxResult result = MessageBox.Show("データを削除しますか？"
+                  , "警告", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    int remdata = dgStudentsData.SelectedIndex;
+
+                    //recruitManagement.StudentTable.Rows.Remove(
+                    //    recruitManagement.StudentTable.Rows[remdata]);
+
+                    var datar = (DataRow)recruitManagement.StudentTable.Rows[remdata];
+
+                    datar.Delete();
+
+                    //データベース更新
+                    studentTableTable.Adapter.Update(recruitManagement.StudentTable);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("更新に失敗しました。" + "\n" + ex.Message);
+            }
         }
     }
 }
