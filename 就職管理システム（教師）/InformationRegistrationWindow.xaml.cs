@@ -85,7 +85,7 @@ namespace 就職管理システム_教師_
             main.Show();
         }
 
-
+        //編集ボタン
         private void btEdit_Click(object sender, RoutedEventArgs e)
         {
             DataRegistration registration = new DataRegistration();
@@ -107,6 +107,8 @@ namespace 就職管理システム_教師_
             //コースの情報を登録
             courseTable.Fill(recruitManagement.CourseTable);
 
+
+            //更新用
             var datacm = recruitManagement.CourseTable.Select(s => s.Course).ToList();
             foreach (var cmitem in datacm)
             {
@@ -202,8 +204,6 @@ namespace 就職管理システム_教師_
         //更新処理
         private void btUpdate_Click(object sender, RoutedEventArgs e)
         {
-
-
             try
             {
                 studentTableTable.Fill(recruitManagement.StudentTable);

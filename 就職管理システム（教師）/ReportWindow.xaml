@@ -39,21 +39,21 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="当日の内容" Grid.Row="1" FontSize="20">
+        <GroupBox Header="当日の内容" Grid.Row="1" FontSize="23">
             <Grid>
                 <TextBox x:Name="tbdayReport" IsReadOnly="True"/>
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="その他" Grid.Row="2" FontSize="20">
+        <GroupBox Header="その他" Grid.Row="2" FontSize="23">
             <Grid>
                 <TextBox x:Name="tbAnother" IsReadOnly="True"/>
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="教師メモ" Grid.Row="3" FontSize="20">
+        <GroupBox Header="教師メモ" Grid.Row="3" FontSize="23">
             <Grid>
-                <TextBox x:Name="tbTeacher" IsReadOnly="True"/>
+                <TextBox x:Name="tbTeacher" TextChanged="tbTeacher_TextChanged"/>
             </Grid>
         </GroupBox>
 
@@ -62,7 +62,8 @@
                     Click="btReturn_Click"/>
             <Button x:Name="btResubmit" Content="再提出" Width="120" FontSize="20" Margin="10"
                     Click="btResubmit_Click"/>
-            <Button x:Name="btCheck" Content="確認済み" Width="120" FontSize="20" Margin="10"/>
+            <Button x:Name="btCheck" Content="確認済み" Width="120" FontSize="20" Margin="10"
+                    Click="btCheck_Click"/>
         </StackPanel>
     </Grid>
 </Window>

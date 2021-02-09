@@ -56,8 +56,8 @@
         <TextBlock Text="生徒名" HorizontalAlignment="Left" VerticalAlignment="Center"
                    Grid.Column="1" Margin="15" FontSize="20"/>
         <TextBox x:Name="tbSearch" Grid.Column="1"
-                 HorizontalAlignment="Right" VerticalAlignment="Center"
-                 Width="288" Height="24" Margin="0,66,15,66"/>
+                 HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20"
+                 Width="288" Height="45" Margin="0,66,15,66"/>
 
         <Button x:Name="btSearch" Content="検索" Grid.Column="2"
                 HorizontalAlignment="Center" Width="81" Margin="20,50,27,50" Click="btSearch_Click"/>
@@ -65,7 +65,7 @@
         <DataGrid x:Name="dgStudentsData" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"
                   Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True"
                    ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected"
-                  SelectionMode="Single" SelectedIndex="-1"
+                  SelectionMode="Single"
                   DataContext="{StaticResource 生徒ViewSource}" CanUserAddRows="False"
                   SelectedCellsChanged="dgStudentsData_SelectedCellsChanged">
             <DataGrid.Columns>
@@ -91,7 +91,7 @@
 
             <Button x:Name="btWatch" Content="閲覧"
                     VerticalAlignment="Center" Margin="15" Height="50" Width="100" 
-                    IsEnabled="False"  Click="btWatch_Click"/>
+                    Click="btWatch_Click"/>
 
         </StackPanel>
     </Grid>

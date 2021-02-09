@@ -46,10 +46,16 @@ namespace 就職管理システム_教師_
         public string date { get; set; }
         //学籍番号
         public string number { get; set; }
+        //氏名
+        public string name { get; set; }
         //評価
         public string evalu { get; set; }
 
-        
+        //教師ID
+        public string teachername { get; set; }
+
+        bool editmemo = false;
+
 
         public ReportWindow()
         {
@@ -58,7 +64,15 @@ namespace 就職管理システム_教師_
 
         private void btReturn_Click(object sender, RoutedEventArgs e)
         {
+            StudentDataWindow recruit = new StudentDataWindow();
+
+            recruit.teachername = this.teachername;
+            recruit.stunumber = this.number;
+            recruit.stname = this.name;
+            recruit.Show();
+
             this.Close();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -67,6 +81,11 @@ namespace 就職管理システム_教師_
                 (this.FindResource("recruitManagement")));
 
             recruitTable.Fill(recruitManagement.RecruitTable);
+            evaluation.Fill(recruitManagement.EvaluationTable);
+
+            tbCompany.Text = companyget;
+            tbPress.Text = pressget;
+            tbType.Text = typege;
 
 
             //当日の内容にデータベースの内容を表示
@@ -95,30 +114,76 @@ namespace 就職管理システム_教師_
 
         private void btResubmit_Click(object sender, RoutedEventArgs e)
         {
+            
+            try
+            {
+                evalu = "再提出";
+                recruitTable.Fill(recruitManagement.RecruitTable);
 
-            //選択行の取り出し
-            //DataRowView drv = (DataRowView)carReportViewSource.View.CurrentItem;
-            //drv.Row[3] = MakerTextBox.Text;
+                //該当行を抽出
+                var report = recruitManagement.RecruitTable.Where(
+                    d => d.RecruitID.ToString().Contains(recId)).ToList();
 
-            StudentDataWindow dataWindow = new StudentDataWindow();
+                //評価を格納する
+                report[0].Evaluation = evalu;
 
-            //企業名、活動場所、種別の取得
-            //DataRowView data = (DataRowView)dgStudentData.SelectedItems[0];
-
-            //企業名、活動場所、種別受け渡し
-            dataWindow.recId = this.recId;
-            dataWindow.date = this.date;
-
-            //Drv = "再提出";
-
-            //データベース更新
-            //recruitTable.Adapter.Update(recruitManagement.StudentTable);
-
-            //dataWindow.RecruiteEv();
+                //教師メモが編集されてたら登録
+                if (editmemo)
+                {
+                    report[0].TeachersMemo = tbTeacher.Text;
+                }
 
 
+                //データベース更新
+                recruitTable.Adapter.Update(recruitManagement.RecruitTable);
+
+                MessageBoxResult result = MessageBox.Show("レポートを評価しました。"
+                   , "警告", MessageBoxButton.OK);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("登録に失敗しました。" + "\n" + ex.Message);
+            }
+        }
+
+        private void tbTeacher_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            editmemo = true;
+        }
+
+        private void btCheck_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                evalu = "確認済み";
+                recruitTable.Fill(recruitManagement.RecruitTable);
+
+                //該当行を抽出
+                var report = recruitManagement.RecruitTable.Where(
+                    d => d.RecruitID.ToString().Contains(recId)).ToList();
+
+                //評価を格納する
+                report[0].Evaluation = evalu;
+
+                //教師メモが編集されてたら登録
+                if (editmemo)
+                {
+                    report[0].TeachersMemo = tbTeacher.Text;
+                }
 
 
+                //データベース更新
+                recruitTable.Adapter.Update(recruitManagement.RecruitTable);
+
+                MessageBoxResult result = MessageBox.Show("レポートを評価しました。"
+                   , "警告", MessageBoxButton.OK);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("登録に失敗しました。" + "\n" + ex.Message);
+            }
         }
     }
 }

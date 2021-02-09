@@ -47,7 +47,21 @@ namespace 就職管理システム_教師_
 
         private void btcbi_Click(object sender, RoutedEventArgs e)
         {
+            if (cbCourse.SelectedItem != cbiNotCourse)
+            {
 
+                //絞り込み処理
+                var data = recruitManagement.StudentTable.AsEnumerable().Where(
+                    d => d.Course.Contains(cbCourse.SelectedItem.ToString())
+                    );
+
+                dgStudentsData.DataContext = data;
+
+            }
+            else
+            {
+                dgStudentsData.DataContext = recruitManagement.StudentTable.AsEnumerable().Select(s => s).ToArray();
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -67,6 +81,10 @@ namespace 就職管理システム_教師_
 
             studentTableTable.Fill(recruitManagement.StudentTable);
 
+            //データコンテキストにリンク使用(超重大)
+            dgStudentsData.DataContext =
+                recruitManagement.StudentTable.AsEnumerable().Select(s => s).ToArray();
+
             UpdateViewSource = ((System.Windows.Data.CollectionViewSource)
                 (this.FindResource("UpdateViewSource")));
         }
@@ -76,15 +94,15 @@ namespace 就職管理システム_教師_
             InformationRegistrationWindow information = new InformationRegistrationWindow();
 
             //データを取得
-            DataRowView data = (DataRowView)dgStudentsData.SelectedItems[0];
+            var data = (DataRow)dgStudentsData.SelectedItem;
 
             //データを格納
 
-            information.stunumber = data.Row[0].ToString();
-            information.stname = data.Row[1].ToString();
+            information.stunumber = data[0].ToString();
+            information.stname = data[1].ToString();
             information.course = data[2].ToString();
             information.clas = data[3].ToString();
-            information.maill = data.Row[4].ToString();
+            information.maill = data[4].ToString();
 
             information.teachername = this.teachername;
 
@@ -93,6 +111,7 @@ namespace 就職管理システム_教師_
             this.Close();
         }
 
+        //削除
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -112,12 +131,24 @@ namespace 就職管理システム_教師_
 
                     //データベース更新
                     studentTableTable.Adapter.Update(recruitManagement.StudentTable);
+
+                    Window_Loaded(sender, e);
                 }
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show("更新に失敗しました。" + "\n" + ex.Message);
+            }
+        }
+
+        private void btSearch_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbSearch.Text != "")
+            {
+                var data = recruitManagement.StudentTable.
+                    Where(d => d.StudentName.Contains(tbSearch.Text));
+                dgStudentsData.DataContext = data;
             }
         }
     }

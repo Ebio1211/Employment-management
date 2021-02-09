@@ -60,7 +60,8 @@
                  Width="286" Height="24" Margin="0,66,15,66"/>
 
         <Button x:Name="btSearch" Content="検索" Grid.Column="2"
-                HorizontalAlignment="Center" Width="81" Margin="23,50,24,50"/>
+                HorizontalAlignment="Center" Width="81" Margin="23,50,24,50"
+                Click="btSearch_Click"/>
 
         <DataGrid x:Name="dgStudentsData" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"
                   Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True"

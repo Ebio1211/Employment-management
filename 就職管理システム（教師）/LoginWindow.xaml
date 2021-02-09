@@ -35,7 +35,8 @@
 
         <Button x:Name="btLogin" Content="Login" Grid.Row="1" Grid.Column="1" IsEnabled="False"
                 VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="98"
-                Margin="0,30" Height="25" FontSize="15" FontWeight="Bold" Click="btLogin_Click"/>
+                Margin="0,30" Height="25" FontSize="15" FontWeight="Bold"
+                Click="btLogin_Click"/>
     </Grid>
  
 

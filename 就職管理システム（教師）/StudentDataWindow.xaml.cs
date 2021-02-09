@@ -29,8 +29,9 @@ namespace 就職管理システム_教師_
 
         System.Windows.Data.CollectionViewSource 企業ViewSource;
 
-        
 
+        //教師ID
+        public string teachername { get; set; }
 
         //学籍番号
         public string stunumber { get; set; }
@@ -58,6 +59,10 @@ namespace 就職管理システム_教師_
 
         private void btReturn_Click(object sender, RoutedEventArgs e)
         {
+            StudentsDate students = new StudentsDate();
+            students.teachername = this.teachername;
+
+            students.Show();
             this.Close();
         }
 
@@ -66,23 +71,33 @@ namespace 就職管理システム_教師_
             ReportWindow report = new ReportWindow();
 
             //企業名、活動場所、種別の取得
-            DataRowView data = (DataRowView)dgStudentData.SelectedItems[0];
+            var data = (DataRow)dgStudentData.SelectedItem;
+
+            report.teachername = this.teachername;
 
             //企業名、活動場所、種別受け渡し
-            
-            report.tbCompany.Text = data.Row[1].ToString();
 
-            report.tbPress.Text = data.Row[2].ToString();
+            report.companyget = data[1].ToString();
 
-            report.tbType.Text = data.Row[3].ToString();
+            report.pressget = data[2].ToString();
+
+            report.typege = data[3].ToString();
 
             //データの格納
-            report.recId = data.Row[0].ToString();
-            report.number = data.Row[5].ToString();
-            report.date = data.Row[4].ToString();
-            report.evalu = data.Row[10].ToString();
+            //企業No
+            report.recId = data[0].ToString();
+            //生徒名
+            report.name = tbstuna.Text;
+            //学籍番号
+            report.number = data[5].ToString();
+            //活動日
+            report.date = data[4].ToString();
+            //評価
+            report.evalu = data[10].ToString();
 
-            report.ShowDialog();
+            report.Show();
+
+            this.Close();
         }
 
 
@@ -98,6 +113,12 @@ namespace 就職管理システム_教師_
 
             cbCorporation.SelectedItem = cbiNotCorporation;
             cbPrefectures.SelectedItem = cbiNotPrefectures;
+
+            tbstunum.Text = stunumber;
+            tbstuna.Text = stname;
+
+            
+
 
             //企業名の情報を登録
 
@@ -116,9 +137,6 @@ namespace 就職管理システム_教師_
             System.Windows.Data.CollectionViewSource 企業ViewSource
                 = ((System.Windows.Data.CollectionViewSource)(this.FindResource("企業ViewSource")));
 
-            企業ViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("企業ViewSource")));
-            企業ViewSource.View.MoveCurrentToFirst();
-
 
             //生徒情報を取得
             就職管理システム_教師_.RecruitManagementDataBaseDataSetTableAdapters.
@@ -130,81 +148,105 @@ namespace 就職管理システム_教師_
             if (!string.IsNullOrWhiteSpace(tbstunum.Text))
             {
                 //学籍番号で絞り込む
-                var datanum  = recruitManagement.RecruitTable.Where(
+                
+                dgStudentData.DataContext = recruitManagement.
+                    RecruitTable.AsEnumerable().Where(
                     d => d.StudenNumber.ToString().Contains(
                         tbstunum.Text.ToString()
                         )
-                    );
-                
-                dgStudentData.DataContext = datanum;
+                    ).Select(s=>s).ToArray();
 
             }
-
-
-        }
-
-        public void RecruiteEv()
-        {
-            //選択行の取り出し
-            //DataRowView drv = (DataRowView)carReportViewSource.View.CurrentItem;
-            //drv.Row[3] = MakerTextBox.Text;
-
-            
-
-            var selectdata = recruitManagement.RecruitTable.Where(
-                    d => d.RecruitID.ToString().Contains(
-                        this.recId
-                        )
-                    );
-
-
-            DataRowView Drv = (DataRowView)企業ViewSource.View.CurrentItem;
-
-            string textev = selectdata.Select(d => d.Evaluation).ToString();
-
-            textev = "再提出";
-
-            //データベース更新
-            recruitTable.Adapter.Update(recruitManagement.RecruitTable);
+            dgStudentData.SelectedIndex = -1;
+            btWatch.IsEnabled = false;
 
         }
 
 
         private void dgStudentData_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            if (dgStudentData.SelectedIndex > 0)
+            if (dgStudentData.SelectedIndex > -1)
             {
-                var data = recruitManagement.RecruitTable.Where(
-                d => d.RecruitID.ToString().Contains(
-                    dgStudentData.SelectedItems[0].ToString()
-                    )
-                ).Distinct().ToArray();
+                var data = (DataRow)dgStudentData.SelectedItem;
 
-                string evdata = data.Select(n => n.Evaluation).ToString();
+                string evdata = data[10].ToString();
 
                 if (evdata != "未提出")
                 {
                     btWatch.IsEnabled = true;
+                }
+                else
+                {
+                    btWatch.IsEnabled = false;
                 }
 
             }
             
         }
 
+        //絞り込み
         private void btcbiitem_Click(object sender, RoutedEventArgs e)
         {
-            if (cbCorporation.SelectedItem != cbiNotCorporation)
+            if (cbCorporation.SelectedItem != cbiNotCorporation && cbPrefectures.SelectedItem != cbiNotPrefectures)
             {
-                //絞り込み処理
-                var data = recruitManagement.RecruitTable.Where(
-                    d => d.EmployeeName.Contains(cbCorporation.SelectedItem.ToString())
-                    );
-
-                dgStudentData.DataContext = data;
+                EmployPrefec();
+            }
+            else if (cbCorporation.SelectedItem != cbiNotCorporation && cbPrefectures.SelectedItem == cbiNotPrefectures)
+            {
+                Employnaitem();
+            }
+            else if (cbCorporation.SelectedItem == cbiNotCorporation && cbPrefectures.SelectedItem != cbiNotPrefectures)
+            {
+                Prefecturesitem();
             }
             else
             {
-                dgStudentData.DataContext = recruitManagement.RecruitTable;
+                dgStudentData.DataContext = recruitManagement.RecruitTable.AsEnumerable().Select(s => s).ToArray();
+            }
+            dgStudentData.SelectedIndex = -1;
+        }
+
+        //絞り込み処理  企業名
+        public void Employnaitem()
+        {
+            
+            var data = recruitManagement.RecruitTable.Where(
+                d => d.EmployeeName.Contains(cbCorporation.SelectedItem.ToString())
+                );
+
+            dgStudentData.DataContext = data;
+        }
+
+        //絞り込み処理  活動場所
+        public void Prefecturesitem()
+        {
+
+            var data = recruitManagement.RecruitTable.Where(
+                d => d.Place.Contains(cbPrefectures.SelectedItem.ToString())
+                );
+
+            dgStudentData.DataContext = data;
+        }
+
+        //絞り込み処理  両方
+        public void EmployPrefec()
+        {
+
+            var data = recruitManagement.RecruitTable.Where(
+                d => d.Place.Contains(cbPrefectures.SelectedItem.ToString())&&
+                d.EmployeeName.Contains(cbCorporation.SelectedItem.ToString())
+                );
+
+            dgStudentData.DataContext = data;
+        }
+
+        private void btSearch_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbSearch.Text != "")
+            {
+                var data = recruitManagement.RecruitTable.
+                    Where(d => d.EmployeeName.Contains(tbSearch.Text));
+                dgStudentData.DataContext = data;
             }
         }
     }
