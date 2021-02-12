@@ -11,8 +11,17 @@
         <CollectionViewSource x:Key="企業ViewSource" Source
                               ="{Binding RecruitTable, Source={StaticResource recruitManagement}}"/>
     </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="water-bg-pattern-01.jpg"/>
+    </Window.Background>
 
     <Grid DataContext="{StaticResource 企業ViewSource}">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#BFC3FFFF" Offset="0.383"/>
+                <GradientStop Color="#80FFFFFF" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
@@ -29,12 +38,14 @@
                    VerticalAlignment="Center" Margin="30,0"/>
 
         <TextBox x:Name="tbstunum" Grid.Column="0" HorizontalAlignment="Right"
+                 TextAlignment="Center" FontSize="23"
                  Margin="0,5,5,5" IsReadOnly="True" Width="208"/>
 
         <TextBlock Text="学生名" Grid.Column="1" FontSize="20" HorizontalAlignment="Left"
                    VerticalAlignment="Center" Margin="30,0"/>
 
         <TextBox x:Name="tbstuna" Grid.Column="1" HorizontalAlignment="Right"
+                 TextAlignment="Center" FontSize="23"
                  Margin="0,5,5,5" IsReadOnly="True" Width="208"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" 
@@ -63,7 +74,7 @@
                 </StackPanel>
                 
                 <ComboBox x:Name="cbCorporation" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"
-                  VerticalAlignment="Center" Margin="25,7" Width="100" FontSize="12">
+                  VerticalAlignment="Center" Margin="20,0" Width="100" FontSize="12">
                     <ComboBoxItem Name="cbiNotCorporation" Content="絞り込まない"/>
                 </ComboBox>
 
@@ -75,23 +86,24 @@
 
                 <Button x:Name="btcbiitem" Content="絞り込み" Grid.Column="1" Grid.Row="2"
                         FontSize="20" 
-                HorizontalAlignment="Center" Width="100" Margin="65,0,65,3" Click="btcbiitem_Click" Height="28" VerticalAlignment="Bottom" FontFamily="Verdana"/>
+                HorizontalAlignment="Center" Width="100" Margin="65,0,65,3" Click="btcbiitem_Click" Height="28" VerticalAlignment="Bottom" FontFamily="Verdana" Background="#BFB6FFF2"/>
             </Grid>
         </GroupBox>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock Text="企業名" FontSize="20" Margin="30" />
-            <TextBox x:Name="tbSearch" Width="213" Margin="0,25"/>
+            <TextBox x:Name="tbSearch" Width="213" Margin="0,25"
+                     TextAlignment="Center" FontSize="23"/>
         </StackPanel>
 
         <Button x:Name="btSearch" Content="検索" Grid.Column="3" Grid.Row="1" FontSize="20"
                 HorizontalAlignment="Center" Width="75" Margin="0,45" FontFamily="Yu Gothic UI Semibold" 
-                Click="btSearch_Click"/>
+                Click="btSearch_Click" Background="#BFB6FFF2"/>
 
         <DataGrid x:Name="dgStudentData" Grid.Row="2" Grid.ColumnSpan="4" Grid.Column="0"
                   Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True"
                   ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected"
-                   SelectionMode="Single" 
+                   SelectionMode="Single"  FontSize="15"
                   DataContext="{StaticResource 企業ViewSource}" CanUserAddRows="False"
                   SelectedCellsChanged="dgStudentData_SelectedCellsChanged"
                   
@@ -123,11 +135,11 @@
                     HorizontalAlignment="Center" >
 
             <Button x:Name="btReturn" Content="戻る" FontSize="20" FontFamily="Yu Gothic UI Semibold"
-                    VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btReturn_Click" />
+                    VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btReturn_Click" Background="#FFDEEEFF" />
 
             <Button x:Name="btWatch" Content="閲覧,評価" FontSize="20" FontFamily="Yu Gothic UI Semibold"
                     VerticalAlignment="Center" Margin="15" Height="50" Width="100" 
-                    Click="btWatch_Click"/>
+                    Click="btWatch_Click" Background="#FFB6DAFF"/>
         </StackPanel>
 
     </Grid>

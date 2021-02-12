@@ -21,6 +21,9 @@ namespace 就職管理システム_教師_
     public partial class DataRegistration : Window
     {
         public string teachername { get; set; }
+
+        public string stunumber { get; set; }
+
         System.Windows.Data.CollectionViewSource UpdateViewSource;
         就職管理システム_教師_.RecruitManagementDataBaseDataSet recruitManagement;
 
@@ -33,6 +36,12 @@ namespace 就職管理システム_教師_
         就職管理システム_教師_.RecruitManagementDataBaseDataSetTableAdapters.
             CourseTableTableAdapter courseTable =
             new RecruitManagementDataBaseDataSetTableAdapters.CourseTableTableAdapter();
+
+        //企業情報の登録
+        就職管理システム_教師_.RecruitManagementDataBaseDataSetTableAdapters.
+            RecruitTableTableAdapter recruitTable =
+            new RecruitManagementDataBaseDataSetTableAdapters.RecruitTableTableAdapter();
+
         public DataRegistration()
         {
             InitializeComponent();
@@ -41,6 +50,9 @@ namespace 就職管理システム_教師_
         private void btReturn_Click(object sender, RoutedEventArgs e)
         {
             InformationRegistrationWindow information = new InformationRegistrationWindow();
+
+            information.teachername = this.teachername;
+
             information.Show();
             this.Close();
         }
@@ -114,33 +126,123 @@ namespace 就職管理システム_教師_
         //削除
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
-            try
+            recruitTable.Fill(recruitManagement.RecruitTable);
+
+            //int remdata = dgStudentsData.SelectedIndex;
+            //var datar = (DataRow)recruitManagement.StudentTable.Rows[remdata];
+
+            var data = (DataRow)dgStudentsData.SelectedItem;
+
+            stunumber = data[0].ToString();
+
+            var Delete = recruitManagement.RecruitTable.AsEnumerable().Count(
+                    d => d.StudenNumber.ToString().Contains(stunumber)
+                    );
+
+            if (Delete > 0)
             {
-                MessageBoxResult result = MessageBox.Show("データを削除しますか？"
+#if false
+                MessageBoxResult result = MessageBox.Show("該当生徒の就活データデータを削除しますか？"
                   , "警告", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    int remdata = dgStudentsData.SelectedIndex;
 
-                    //recruitManagement.StudentTable.Rows.Remove(
-                    //    recruitManagement.StudentTable.Rows[remdata]);
+                    var clear = recruitManagement.RecruitTable.AsEnumerable().Where(
+                        d => d.StudenNumber.ToString().Contains(stunumber)
+                        ).Select(s => s.RecruitID).ToList();
+                    try
+                    {
 
-                    var datar = (DataRow)recruitManagement.StudentTable.Rows[remdata];
+                        foreach (var cldata in clear)
+                        {
+                            if (cldata == 0)
+                            {
+                                var datar = (DataRow)recruitManagement.RecruitTable.Rows[cldata];
+                                datar.Delete();
+                                //データベース更新
+                                studentTableTable.Adapter.Update(recruitManagement.StudentTable);
+                            }
+                            else
+                            {
+                                var datar = (DataRow)recruitManagement.RecruitTable.Rows[cldata - 1];
+                                datar.Delete();
+                                //データベース更新
+                                studentTableTable.Adapter.Update(recruitManagement.StudentTable);
+                            }
+                        }
 
-                    datar.Delete();
+                        MessageBox.Show("就活データを削除しました。", "警告", MessageBoxButton.OK);
+                    }
+                    catch (Exception ex)
+                    {
 
-                    //データベース更新
-                    studentTableTable.Adapter.Update(recruitManagement.StudentTable);
+                        MessageBox.Show("削除に失敗しました。" + "\n" + ex.Message);
+                    }
 
-                    Window_Loaded(sender, e);
+
+                    try
+                    {
+                        MessageBoxResult stresult = MessageBox.Show("データを削除しますか？"
+                          , "警告", MessageBoxButton.YesNo);
+                        if (stresult == MessageBoxResult.Yes)
+                        {
+                            int remdata = dgStudentsData.SelectedIndex;
+
+                            var datar = (DataRow)recruitManagement.StudentTable.Rows[remdata];
+
+                            //datar.Delete();
+
+
+
+                            //データベース更新
+                            studentTableTable.Adapter.Update(recruitManagement.StudentTable);
+                            Window_Loaded(sender, e);
+                            MessageBox.Show("生徒データを削除しました。", "警告", MessageBoxButton.OK);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show("削除に失敗しました。" + "\n" + ex.Message);
+                    }
+
+
+                }
+#endif
+                MessageBox.Show("就活データがあるので削除できません。", "警告", MessageBoxButton.OK);
+            }
+            else if(Delete == 0)
+            {
+                try
+                {
+                    MessageBoxResult stresult = MessageBox.Show("データを削除しますか？"
+                      , "警告", MessageBoxButton.YesNo);
+                    if (stresult == MessageBoxResult.Yes)
+                    {
+                        int remdata = dgStudentsData.SelectedIndex;
+
+                        var datar = (DataRow)recruitManagement.StudentTable.Rows[remdata];
+
+                        datar.Delete();
+
+
+
+                        //データベース更新
+                        studentTableTable.Adapter.Update(recruitManagement.StudentTable);
+                        Window_Loaded(sender, e);
+                        MessageBox.Show("生徒データを削除しました。", "警告", MessageBoxButton.OK);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("削除に失敗しました。" + "\n" + ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
 
-                MessageBox.Show("更新に失敗しました。" + "\n" + ex.Message);
-            }
-        }
+
+
+                }
 
         private void btSearch_Click(object sender, RoutedEventArgs e)
         {

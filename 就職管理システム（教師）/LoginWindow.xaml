@@ -12,7 +12,7 @@
     <Window.Resources>
         <local:RecruitManagementDataBaseDataSet x:Key="recruitManagement"/>
     </Window.Resources>
-    <Grid>
+    <Grid Background="#1AD9FFFD">
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
             <RowDefinition Height="150"/>
@@ -24,20 +24,20 @@
         </Grid.ColumnDefinitions>
         <TextBlock Text="就活情報管理システム" Grid.Row="0" Grid.Column="0" Foreground="Black"
                    HorizontalAlignment="Center" Margin="15,10" VerticalAlignment="Center"
-                   FontSize="35" FontWeight="Bold" Grid.ColumnSpan="3"/>
-        <TextBlock Text="メールアドレス" Grid.Row="1" VerticalAlignment="Top"
-                   HorizontalAlignment="Left" Margin="13,35" FontSize="25"/>
+                   FontSize="35" FontWeight="Bold" Grid.ColumnSpan="3" Background="#3FFFFFFF"/>
+        <TextBlock Text="メールアドレス：" Grid.Row="1" VerticalAlignment="Top"
+                   HorizontalAlignment="Left" Margin="22,35,0,0" FontSize="25" Background="#3FD8BABA"/>
         <TextBox x:Name="MALogin" Grid.Column="1" Grid.Row="1" Margin="4,35" 
-                 VerticalAlignment="Top" FontSize="20" TextChanged="MALogin_TextChanged"/>
+                 VerticalAlignment="Top" FontSize="20" TextChanged="MALogin_TextChanged" Background="White"/>
         <TextBlock x:Name="tblAddress" Text="@ojs.ac.jp" Grid.Row="1" Grid.Column="2"
                    VerticalAlignment="Top" HorizontalAlignment="Left"
-                   Margin="4,35" FontSize="25"/>
+                   Margin="4,35" FontSize="25" Background="#26BAD7D7"/>
 
         <Button x:Name="btLogin" Content="Login" Grid.Row="1" Grid.Column="1" IsEnabled="False"
                 VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="98"
-                Margin="0,30" Height="25" FontSize="15" FontWeight="Bold"
-                Click="btLogin_Click"/>
+                Margin="38,0,38,25" Height="35" FontSize="20" 
+                Click="btLogin_Click" Background="#FFEFFDFF" BorderBrush="#FF001355" Foreground="Black" FontWeight="Bold"/>
     </Grid>
- 
+
 
 </Window>

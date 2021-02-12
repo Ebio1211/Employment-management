@@ -15,7 +15,16 @@
             StaticResource recruitManagement}}"/>
 
     </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="water-bg-pattern-04.jpg"/>
+    </Window.Background>
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="#BFF1F1F1" Offset="0.617"/>
+                <GradientStop Color="#BF78E6E6"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="4*"/>
@@ -40,34 +49,37 @@
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="コース" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   FontSize="15" Margin="10"/>
- 
+                <TextBlock Text="コース" Grid.RowSpan="2"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="25" Margin="10"/>
+
                 <ComboBox x:Name="cbCourse" Grid.Column="1"
-                          HorizontalAlignment="Center" Width="108" Margin="0,10" FontSize="15">
-                    <ComboBoxItem Name="cbiNotCourse" Content="絞り込まない"/>
+                          HorizontalAlignment="Center" Width="108" Margin="0,10" FontSize="15" Background="Black">
+                    <ComboBoxItem Name="cbiNotCourse" Content="絞り込まない" Background="White"/>
                 </ComboBox>
 
-                <Button x:Name="btcbi" Content="絞り込み" Grid.Column="2" Grid.Row="1"
-                HorizontalAlignment="Center" Width="81" Margin="6,10" Click="btcbi_Click"/>
+                <Button x:Name="btcbi" Content="絞り込み" Grid.Column="2" Grid.Row="1" FontSize="20"
+                HorizontalAlignment="Center" Width="81" Margin="6,10" Click="btcbi_Click"
+                        Background="#7F22389C" FontFamily="Yu Mincho"/>
             </Grid>
         </GroupBox>
 
         <TextBlock Text="生徒名" HorizontalAlignment="Left" VerticalAlignment="Center"
-                   Grid.Column="1" Margin="15" FontSize="20"/>
-        <TextBox x:Name="tbSearch" Grid.Column="1"
-                 HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20"
-                 Width="288" Height="45" Margin="0,66,15,66"/>
+                   Grid.Column="1" Margin="9,64,0,64" FontSize="22"/>
+        <TextBox x:Name="tbSearch" Grid.Column="1" TextAlignment="Center"
+                 HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="25"
+                 Width="288" Height="45" Margin="0,66,15,66" FontFamily="Yu Mincho"/>
 
-        <Button x:Name="btSearch" Content="検索" Grid.Column="2"
-                HorizontalAlignment="Center" Width="81" Margin="20,50,27,50" Click="btSearch_Click"/>
+        <Button x:Name="btSearch" Content="検索" Grid.Column="2" FontSize="30"
+                HorizontalAlignment="Center" Width="91" Margin="10,50,27,50"
+                Click="btSearch_Click" FontFamily="Yu Mincho" Background="#FF5E8EC3"/>
 
         <DataGrid x:Name="dgStudentsData" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0"
                   Margin="10,5" AutoGenerateColumns="False" EnableRowVirtualization="True"
                    ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected"
-                  SelectionMode="Single"
+                  SelectionMode="Single" FontSize="15" FontFamily="Yu Mincho"
                   DataContext="{StaticResource 生徒ViewSource}" CanUserAddRows="False"
-                  SelectedCellsChanged="dgStudentsData_SelectedCellsChanged">
+                  SelectedCellsChanged="dgStudentsData_SelectedCellsChanged" Background="#FFFFF8F8">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="学籍番号Column"
                                      Binding="{Binding StudentNumber}" Header="学籍番号" Width="SizeToHeader" IsReadOnly="True"/>
@@ -86,12 +98,14 @@
         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"
                     HorizontalAlignment="Center" >
 
-            <Button x:Name="btReturn" Content="戻る"
-                    VerticalAlignment="Center" Margin="15" Height="50" Width="100" Click="btReturn_Click"/>
+            <Button x:Name="btReturn" Content="戻る" FontSize="30"
+                    VerticalAlignment="Center" Margin="15" 
+                    Height="50" Width="100" Click="btReturn_Click" Background="#729C3636"
+                    FontFamily="Yu Mincho"/>
 
-            <Button x:Name="btWatch" Content="閲覧"
+            <Button x:Name="btWatch" Content="閲覧" FontFamily="Yu Mincho" FontSize="30"
                     VerticalAlignment="Center" Margin="15" Height="50" Width="100" 
-                    Click="btWatch_Click"/>
+                    Click="btWatch_Click" Background="#BF152B63" Foreground="#FFFBF3EA"/>
 
         </StackPanel>
     </Grid>

@@ -10,7 +10,10 @@
         <local:RecruitManagementDataBaseDataSet x:Key="recruitManagement"/>
 
     </Window.Resources>
-    <Grid>
+    <Window.Background>
+        <ImageBrush ImageSource="silk01.jpg"/>
+    </Window.Background>
+    <Grid Background="#BFFFF3EF">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
@@ -25,30 +28,32 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="学生情報の登録" Grid.Column="0" Grid.ColumnSpan="2"
-                   HorizontalAlignment="Center" Margin="5" FontSize="20" FontWeight="Black"/>
+        <TextBlock Text="学生情報の登録" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center" Margin="5,0,5,5" FontSize="30" FontFamily="Yu Gothic UI Semibold" TextDecorations="{x:Null}" Foreground="#FF021A2E"/>
 
-        <TextBlock Text="学籍番号：" Grid.Row="1" FontSize="15" HorizontalAlignment="Right"
+        <TextBlock Text="学籍番号：" Grid.Row="1" FontSize="20" HorizontalAlignment="Right"
                    VerticalAlignment="Bottom" Margin="20"/>
-        
-        <TextBlock Text="氏名：" Grid.Row="2" FontSize="15" HorizontalAlignment="Right"
+
+        <TextBlock Text="氏名：" Grid.Row="2" FontSize="20" HorizontalAlignment="Right"
                    VerticalAlignment="Bottom" Margin="20"/>
-        
-        <TextBlock Text="コース：" Grid.Row="3" FontSize="15" HorizontalAlignment="Right"
+
+        <TextBlock Text="コース：" Grid.Row="3" FontSize="20" HorizontalAlignment="Right"
                    VerticalAlignment="Bottom" Margin="20"/>
-        <TextBlock Text="クラス：" Grid.Row="4" FontSize="15" HorizontalAlignment="Right"
+        <TextBlock Text="クラス：" Grid.Row="4" FontSize="20" HorizontalAlignment="Right"
                    VerticalAlignment="Bottom" Margin="20"/>
-        <TextBlock Text="メールアドレス：" Grid.Row="5" FontSize="15" HorizontalAlignment="Right"
+        <TextBlock Text="メールアドレス：" Grid.Row="5" FontSize="20" HorizontalAlignment="Right"
                    VerticalAlignment="Bottom" Margin="20"/>
-        
-        <TextBlock x:Name="tbAddress" Text="@ojs.ac.jp" Grid.Column="1" Grid.Row="5" FontSize="15" HorizontalAlignment="Right"
-                   VerticalAlignment="Bottom" Margin="20"/>
+
+        <TextBlock x:Name="tbAddress" Text="@ojs.ac.jp" Grid.Column="1" Grid.Row="5" FontSize="20" HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom" Margin="0,0,13,20"/>
 
         <TextBox x:Name="tbgakuseki" Grid.Column="1" Grid.Row="1" FontSize="15" HorizontalAlignment="Left"
-                   VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"/>
+                 TextAlignment="Center" 
+                 VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"/>
 
         <TextBox x:Name="tbName" Grid.Column="1" Grid.Row="2" FontSize="15" HorizontalAlignment="Left"
-                   VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"/>
+                   VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"
+                 TextAlignment="Center"/>
 
         <ComboBox x:Name="cbCourse" Grid.Column="1" Grid.Row="3" FontSize="15" HorizontalAlignment="Left"
                    VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90">
@@ -56,26 +61,28 @@
         </ComboBox>
 
         <TextBox x:Name="tbClass" Grid.Column="1" Grid.Row="4" FontSize="15" HorizontalAlignment="Left"
-                   VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"/>
+                   VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"
+                 TextAlignment="Center"/>
 
         <TextBox x:Name="tbMaill" Grid.Column="1" Grid.Row="5" FontSize="15" HorizontalAlignment="Left"
-                   VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"/>
+                   VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"
+                 TextAlignment="Center"/>
 
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left">
             <Button x:Name="btEdit" Content="編集" Margin="5" Height="30" Width="80"
-                    Click="btEdit_Click"/>
+                    Click="btEdit_Click" Background="#FFCFE9F5"/>
             <Button x:Name="btUpdate" Content="更新" Margin="5" Height="30" Width="80"
-                    IsEnabled="False" Click="btUpdate_Click"/>
+                    IsEnabled="False" Click="btUpdate_Click" Background="#FFE8D6C6"/>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
-            
-            <Button x:Name="btReset" Content="リセット" Margin="5" Height="30" Width="80"
-                    Click="btReset_Click"/>
 
-            <Button x:Name="btCancel" Content="キャンセル" Margin="5" Height="30" Width="80" Click="btCancel_Click"/>
+            <Button x:Name="btReset" Content="リセット" Margin="5" Height="30" Width="80"
+                    Click="btReset_Click" Background="White"/>
+
+            <Button x:Name="btCancel" Content="キャンセル" Margin="5" Height="30" Width="80" Click="btCancel_Click" Background="#FFE4DADA"/>
             <Button x:Name="btTouroku" Content="登録" Margin="5" Height="30" Width="80"
-                    Click="btTouroku_Click"/>
+                    Click="btTouroku_Click" Background="#FFCDE7EC"/>
         </StackPanel>
 
 

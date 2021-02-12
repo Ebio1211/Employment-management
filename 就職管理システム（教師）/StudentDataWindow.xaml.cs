@@ -122,7 +122,8 @@ namespace 就職管理システム_教師_
 
             //企業名の情報を登録
 
-            var demplo = recruitManagement.RecruitTable.Select(s => s.EmployeeName).Distinct().ToList();
+            var demplo = recruitManagement.
+                RecruitTable.Select(s => s.EmployeeName).Distinct().ToList();
             foreach (var emitem in demplo)
             {
                 cbCorporation.Items.Add(emitem.ToString());
@@ -171,13 +172,13 @@ namespace 就職管理システム_教師_
 
                 string evdata = data[10].ToString();
 
-                if (evdata != "未提出")
+                if (evdata == "未提出" || evdata == "再提出")
                 {
-                    btWatch.IsEnabled = true;
+                    btWatch.IsEnabled = false;
                 }
                 else
                 {
-                    btWatch.IsEnabled = false;
+                    btWatch.IsEnabled = true;
                 }
 
             }

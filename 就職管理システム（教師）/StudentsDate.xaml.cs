@@ -55,6 +55,8 @@ namespace 就職管理システム_教師_
 
         protected void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            dgStudentsData.AlternatingRowBackground = System.Windows.Media.Brushes.LightSteelBlue;
+
             recruitManagement = ((就職管理システム_教師_.RecruitManagementDataBaseDataSet)
                 (this.FindResource("recruitManagement")));
 
@@ -108,6 +110,10 @@ namespace 就職管理システム_教師_
                 var data = recruitManagement.StudentTable.
                     Where(d => d.StudentName.Contains(tbSearch.Text));
                 dgStudentsData.DataContext = data;
+            }
+            else
+            {
+                dgStudentsData.DataContext = recruitManagement.StudentTable.AsEnumerable().Select(s => s).ToArray();
             }
 
             

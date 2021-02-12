@@ -11,7 +11,16 @@
         <local:RecruitManagementDataBaseDataSet x:Key="recruitManagement"/>
         
     </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="water-bg-pattern-02.jpg"/>
+    </Window.Background>
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#BFB6F3F1" Offset="0"/>
+                <GradientStop Color="#7FFFFFFF" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
@@ -29,40 +38,43 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBox x:Name="tbCompany" Grid.Column="0" IsReadOnly="True" Margin="3"
-                         Text="企業名" FontSize="20"/>
+                         TextAlignment="Center" FontSize="23"/>
 
                 <TextBox x:Name="tbPress" Grid.Column="1" IsReadOnly="True" Margin="3"
-                         Text="活動場所" FontSize="20"/>
+                         TextAlignment="Center" FontSize="23"/>
 
                 <TextBox x:Name="tbType" Grid.Column="2" IsReadOnly="True" Margin="3"
-                         Text="種別" FontSize="20"/>
+                         TextAlignment="Center" FontSize="23"/>
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="当日の内容" Grid.Row="1" FontSize="23">
+        <GroupBox Header="当日の内容" Grid.Row="1" FontSize="25" Background="#19001A5F">
             <Grid>
-                <TextBox x:Name="tbdayReport" IsReadOnly="True"/>
+                <TextBox x:Name="tbdayReport" IsReadOnly="True"
+                         TextAlignment="Left" FontSize="23"/>
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="その他" Grid.Row="2" FontSize="23">
+        <GroupBox Header="その他" Grid.Row="2" FontSize="25" Background="#19FF4B64">
             <Grid>
-                <TextBox x:Name="tbAnother" IsReadOnly="True"/>
+                <TextBox x:Name="tbAnother" IsReadOnly="True"
+                         TextAlignment="Left"  FontSize="23"/>
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="教師メモ" Grid.Row="3" FontSize="23">
+        <GroupBox Header="教師メモ" Grid.Row="3" FontSize="25" Background="#38F7DDD9">
             <Grid>
-                <TextBox x:Name="tbTeacher" TextChanged="tbTeacher_TextChanged"/>
+                <TextBox x:Name="tbTeacher"  TextChanged="tbTeacher_TextChanged"
+                         TextAlignment="Left" FontSize="23"/>
             </Grid>
         </GroupBox>
 
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" >
-            <Button x:Name="btReturn" Content="戻る" Width="120" FontSize="20" Margin="10"
+            <Button x:Name="btReturn" Content="戻る" Width="120" FontSize="25" Margin="10"
                     Click="btReturn_Click"/>
-            <Button x:Name="btResubmit" Content="再提出" Width="120" FontSize="20" Margin="10"
+            <Button x:Name="btResubmit" Content="再提出" Width="120" FontSize="25" Margin="10"
                     Click="btResubmit_Click"/>
-            <Button x:Name="btCheck" Content="確認済み" Width="120" FontSize="20" Margin="10"
+            <Button x:Name="btCheck" Content="確認済み" Width="120" FontSize="25" Margin="10"
                     Click="btCheck_Click"/>
         </StackPanel>
     </Grid>
