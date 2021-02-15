@@ -26,8 +26,8 @@ namespace 就職管理システム_教師_.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=C42SV;Initial Catalog=RecruitManagementDataBase;Persist Security Info" +
-            "=True;User ID=gu;Password=c42dbpass")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=172.16.42.1;Initial Catalog=RecruitManagementDataBase;Persist Securit" +
+            "y Info=True;User ID=gu;Password=c42dbpass")]
         public string RecruitManagementDataBaseConnectionString {
             get {
                 return ((string)(this["RecruitManagementDataBaseConnectionString"]));

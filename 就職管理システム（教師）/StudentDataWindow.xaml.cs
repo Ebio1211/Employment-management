@@ -122,14 +122,20 @@ namespace 就職管理システム_教師_
 
             //企業名の情報を登録
 
+
+
             var demplo = recruitManagement.
-                RecruitTable.Select(s => s.EmployeeName).Distinct().ToList();
+                RecruitTable.Where(
+                d => d.StudenNumber.ToString().Contains(stunumber)
+                ).Select(s => s.EmployeeName).Distinct().ToList();
             foreach (var emitem in demplo)
             {
                 cbCorporation.Items.Add(emitem.ToString());
             }
 
-            var dprefe = recruitManagement.RecruitTable.Select(d => d.Place).Distinct().ToList();
+            var dprefe = recruitManagement.RecruitTable.Where(
+                d => d.StudenNumber.ToString().Contains(stunumber)
+                ).Select(d => d.Place).Distinct().ToList();
             foreach (var preitem in dprefe)
             {
                 cbPrefectures.Items.Add(preitem.ToString());

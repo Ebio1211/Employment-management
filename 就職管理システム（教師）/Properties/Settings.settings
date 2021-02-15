@@ -5,10 +5,10 @@
     <Setting Name="RecruitManagementDataBaseConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=C42SV;Initial Catalog=RecruitManagementDataBase;Persist Security Info=True;User ID=gu;Password=c42dbpass&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=172.16.42.1;Initial Catalog=RecruitManagementDataBase;Persist Security Info=True;User ID=gu;Password=c42dbpass&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=C42SV;Initial Catalog=RecruitManagementDataBase;Persist Security Info=True;User ID=gu;Password=c42dbpass</Value>
+      <Value Profile="(Default)">Data Source=172.16.42.1;Initial Catalog=RecruitManagementDataBase;Persist Security Info=True;User ID=gu;Password=c42dbpass</Value>
     </Setting>
   </Settings>
 </SettingsFile>
