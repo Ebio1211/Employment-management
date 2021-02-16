@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:就職管理システム_教師_"
         mc:Ignorable="d"
-        Title="" Height="484" Width="450" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="就活情報管理アプリ(教師)" Height="484" Width="450" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Window.Resources>
         <local:RecruitManagementDataBaseDataSet x:Key="recruitManagement"/>
 

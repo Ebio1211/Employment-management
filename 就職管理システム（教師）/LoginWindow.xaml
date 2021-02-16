@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:就職管理システム_教師_"
         mc:Ignorable="d"
-        Title="就職管理システム（教師用）" Height="328" Width="529" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="就活情報管理アプリ(教師)" Height="328" Width="529" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Window.Background>
         <ImageBrush ImageSource="CorkBoard02.jpg"/>
     </Window.Background>
@@ -22,7 +22,7 @@
             <ColumnDefinition Width="114*"/>
             <ColumnDefinition Width="114*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="就活情報管理システム" Grid.Row="0" Grid.Column="0" Foreground="Black"
+        <TextBlock Text="就活情報管理アプリ(教師)" Grid.Row="0" Grid.Column="0" Foreground="Black"
                    HorizontalAlignment="Center" Margin="15,10" VerticalAlignment="Center"
                    FontSize="35" FontWeight="Bold" Grid.ColumnSpan="3" Background="#3FFFFFFF"/>
         <TextBlock Text="メールアドレス：" Grid.Row="1" VerticalAlignment="Top"
