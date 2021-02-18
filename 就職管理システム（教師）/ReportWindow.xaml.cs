@@ -83,6 +83,8 @@ namespace 就職管理システム_教師_
             recruitTable.Fill(recruitManagement.RecruitTable);
             evaluation.Fill(recruitManagement.EvaluationTable);
 
+            tbTeacher.AcceptsReturn = true;
+
             tbCompany.Text = companyget;
             tbPress.Text = pressget;
             tbType.Text = typege;

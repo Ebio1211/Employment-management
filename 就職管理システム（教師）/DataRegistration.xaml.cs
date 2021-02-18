@@ -111,6 +111,7 @@ namespace 就職管理システム_教師_
             //データを格納
 
             information.stunumber = data[0].ToString();
+            information.tbName.Text = data[1].ToString();
             information.stname = data[1].ToString();
             information.course = data[2].ToString();
             information.clas = data[3].ToString();
@@ -135,6 +136,7 @@ namespace 就職管理システム_教師_
 
             stunumber = data[0].ToString();
 
+            //就活情報があれば1以上なければ未満
             var Delete = recruitManagement.RecruitTable.AsEnumerable().Count(
                     d => d.StudenNumber.ToString().Contains(stunumber)
                     );
@@ -219,10 +221,13 @@ namespace 就職管理システム_教師_
                       , "警告", MessageBoxButton.YesNo);
                     if (stresult == MessageBoxResult.Yes)
                     {
+                        //選択行の行番を取得
                         int remdata = dgStudentsData.SelectedIndex;
 
+                        //選択行の番号の行にあるDBのデータを削除
                         var datar = (DataRow)recruitManagement.StudentTable.Rows[remdata];
 
+                        //削除処理
                         datar.Delete();
 
 

@@ -48,7 +48,7 @@
                    VerticalAlignment="Bottom" Margin="0,0,13,20"/>
 
         <TextBox x:Name="tbgakuseki" Grid.Column="1" Grid.Row="1" FontSize="15" HorizontalAlignment="Left"
-                 TextAlignment="Center" 
+                 TextAlignment="Center" TextChanged="tbgakuseki_TextChanged"
                  VerticalAlignment="Bottom" Margin="20,0,0,20" Width="90"/>
 
         <TextBox x:Name="tbName" Grid.Column="1" Grid.Row="2" FontSize="15" HorizontalAlignment="Left"

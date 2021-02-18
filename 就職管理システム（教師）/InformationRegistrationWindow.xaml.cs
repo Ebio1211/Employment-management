@@ -107,14 +107,15 @@ namespace 就職管理システム_教師_
             //コースの情報を登録
             courseTable.Fill(recruitManagement.CourseTable);
 
+            tbMaill.IsReadOnly = true;
 
-            //更新用
             var datacm = recruitManagement.CourseTable.Select(s => s.Course).ToList();
             foreach (var cmitem in datacm)
             {
                 cbCourse.Items.Add(cmitem.ToString());
             }
 
+            //更新用
             if (!string.IsNullOrWhiteSpace(stunumber)||
                 !string.IsNullOrWhiteSpace(stname)||
                 !string.IsNullOrWhiteSpace(course)||
@@ -123,6 +124,8 @@ namespace 就職管理システム_教師_
             {
                 btTouroku.IsEnabled = false;
                 btUpdate.IsEnabled = true;
+                tbgakuseki.IsReadOnly = true;
+                tbMaill.IsReadOnly = true;
 
                 tbgakuseki.Text = this.stunumber;
                 tbName.Text = this.stname;
@@ -153,52 +156,75 @@ namespace 就職管理システム_教師_
         //登録処理
         private void btTouroku_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tbgakuseki.Text)||
-                string.IsNullOrWhiteSpace(tbName.Text)||
-                string.IsNullOrWhiteSpace(tbClass.Text)||
-                string.IsNullOrWhiteSpace(tbMaill.Text)&&
-                tbgakuseki.Text == tbMaill.Text
-                )
+            if (tbgakuseki.Text.Length > 5 || tbgakuseki.Text.Length < 4)
             {
-                MessageBoxResult result = MessageBox.Show("入力漏れがあります。"
-                    , "警告", MessageBoxButton.OK);
+                MessageBoxResult result = MessageBox.Show("学籍番号は5桁の数字にしてください。"
+                            , "警告", MessageBoxButton.OK);
             }
             else
             {
                 try
                 {
-                    //新規レコードの追加
-                    var Newdr = recruitManagement.StudentTable.NewRow();
+                    int sunum = int.Parse(tbgakuseki.Text);
+                    int sutclass = int.Parse(tbClass.Text);
 
-                    Newdr[0] = tbgakuseki.Text;
-                    Newdr[1] = tbName.Text;
-                    Newdr[2] = cbCourse.SelectedItem;
-                    Newdr[3] = tbClass.Text;
-                    Newdr[4] = tbMaill.Text + tbAddress.Text;
-
-                    //データセットに新しいレコードを追加
-                    recruitManagement.StudentTable.Rows.Add(Newdr);
-
-                    //データベース更新
-                    studentTableTable.Adapter.Update(recruitManagement.StudentTable);
-
-                    MessageBoxResult result = MessageBox.Show("データを登録しました。"
-                       , "警告", MessageBoxButton.OK);
-                    if (result == MessageBoxResult.OK)
+                    if (string.IsNullOrWhiteSpace(tbgakuseki.Text) ||
+                    string.IsNullOrWhiteSpace(tbName.Text) ||
+                    string.IsNullOrWhiteSpace(tbClass.Text) ||
+                    string.IsNullOrWhiteSpace(tbMaill.Text) &&
+                    tbgakuseki.Text == tbMaill.Text
+                    )
                     {
-                        tbgakuseki.Text = "";
-                        tbName.Text = "";
-                        tbClass.Text = "";
-                        tbMaill.Text = "";
+                        MessageBoxResult result = MessageBox.Show("入力漏れがあります。"
+                            , "警告", MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        try
+                        {
+
+                            //新規レコードの追加
+                            var Newdr = recruitManagement.StudentTable.NewRow();
+
+                            Newdr[0] = tbgakuseki.Text;
+                            Newdr[1] = tbName.Text;
+                            Newdr[2] = cbCourse.SelectedItem;
+                            Newdr[3] = tbClass.Text;
+                            Newdr[4] = tbMaill.Text + tbAddress.Text;
+
+                            //データセットに新しいレコードを追加
+                            recruitManagement.StudentTable.Rows.Add(Newdr);
+
+                            //データベース更新
+                            studentTableTable.Adapter.Update(recruitManagement.StudentTable);
+
+                            MessageBoxResult result = MessageBox.Show("データを登録しました。"
+                               , "警告", MessageBoxButton.OK);
+                            if (result == MessageBoxResult.OK)
+                            {
+                                tbgakuseki.Text = "";
+                                tbName.Text = "";
+                                tbClass.Text = "";
+                                tbMaill.Text = "";
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                            MessageBox.Show("登録に失敗しました。" + "\n" + ex.Message);
+                        }
+
                     }
                 }
-                catch (Exception ex)
+                catch (Exception ei)
                 {
 
-                    MessageBox.Show("登録に失敗しました。"+"\n"+ex.Message);
+                    MessageBox.Show("学籍番号またはクラスの登録できません" + "\n" + ei.Message);
                 }
-                
             }
+
+            
+            
         }
 
         //更新処理
@@ -207,6 +233,7 @@ namespace 就職管理システム_教師_
             try
             {
                 studentTableTable.Fill(recruitManagement.StudentTable);
+                int sutclass = int.Parse(tbClass.Text);
 
                 this.stunumber = tbgakuseki.Text;
                 this.stname = tbName.Text;
@@ -259,11 +286,18 @@ namespace 就職管理システム_教師_
 
             btTouroku.IsEnabled = true;
             btUpdate.IsEnabled = false;
+            tbgakuseki.IsReadOnly = false;
+            
             cbCourse.SelectedItem = cbiNotCorporation;
             tbgakuseki.Text = "";
             tbName.Text = "";
             tbClass.Text = "";
             tbMaill.Text = "";
+        }
+
+        private void tbgakuseki_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tbMaill.Text = tbgakuseki.Text;
         }
     }
 }
